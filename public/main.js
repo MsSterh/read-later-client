@@ -1966,23 +1966,19 @@
 	"use strict";
 	
 	var React = __webpack_require__(4);
+	var LinkToOriginal = __webpack_require__(224);
+	
 	var truncate = __webpack_require__(74);
 	var striptags = __webpack_require__(221);
-	var parseUri = __webpack_require__(223);
 	
-	var Index = React.createClass({
-	  displayName: "Index",
-	
-	  getHost: function getHost() {
-	    return parseUri(this.props.article.url).host;
-	  },
+	var Article = React.createClass({
+	  displayName: "Article",
 	
 	  articleContent: function articleContent() {
 	    return { __html: truncate(striptags(this.props.article.content), 400) };
 	  },
 	
 	  render: function render() {
-	    console.log(this.getHost());
 	    return React.createElement(
 	      "div",
 	      null,
@@ -1992,16 +1988,12 @@
 	        this.props.article.title
 	      ),
 	      React.createElement("p", { dangerouslySetInnerHTML: this.articleContent() }),
-	      React.createElement(
-	        "a",
-	        { href: this.props.article.url },
-	        this.getHost()
-	      )
+	      React.createElement(LinkToOriginal, { url: this.props.article.url })
 	    );
 	  }
 	});
 	
-	module.exports = Index;
+	module.exports = Article;
 
 /***/ },
 /* 27 */
@@ -35855,6 +35847,33 @@
 	};
 	
 	module.exports = parseUri
+
+/***/ },
+/* 224 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	var React = __webpack_require__(4);
+	var parseUri = __webpack_require__(223);
+	
+	var LinkToOriginal = React.createClass({
+	  displayName: "LinkToOriginal",
+	
+	  getHost: function getHost() {
+	    return parseUri(this.props.url).host;
+	  },
+	
+	  render: function render() {
+	    return React.createElement(
+	      "a",
+	      { href: this.props.url },
+	      this.getHost()
+	    );
+	  }
+	});
+	
+	module.exports = LinkToOriginal;
 
 /***/ }
 /******/ ]);
