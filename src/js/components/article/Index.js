@@ -3,7 +3,9 @@ var Reflux = require('reflux');
 var Router = require('react-router');
 var _ = require('lodash');
 
+var Header = require('../common/Header');
 var Article = require('./Article');
+
 var ArticleStore = require('../../stores/ArticleStore');
 
 function currentArticle(articles) {
@@ -26,7 +28,15 @@ var Index = React.createClass({
 
   render() {
     return (
-      <Article article={this.state.article} />
+      <div>
+        <Header>
+          rofl
+        </Header>
+
+        <div className='content'>
+          <Article article={this.state.article} />
+        </div>
+      </div>
     );
   }
 });

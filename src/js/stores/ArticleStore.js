@@ -1,7 +1,8 @@
 var Firebase = require('firebase');
 var Reflux = require('reflux');
-var ArticleActions = require('../actions/ArticleActions');
 var _ = require('lodash');
+
+var ArticleActions = require('../actions/ArticleActions');
 
 var articlesRef = new Firebase("https://read-later.firebaseio.com/articles");
 
