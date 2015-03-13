@@ -12,7 +12,11 @@ var ArticleStore = Reflux.createStore({
   },
 
   onReceiveArticles(snapshot) {
-    this.trigger(snapshot.val() || {});
+    this.trigger(this.last=snapshot.val() || {});
+  },
+
+  getDefaultData() {
+    return this.last || {};
   }
 });
 
