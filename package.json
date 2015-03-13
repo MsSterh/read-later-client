@@ -1,0 +1,28 @@
+{
+  "name": "read-later-client",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "./node_modules/.bin/webpack",
+    "watch": "./node_modules/.bin/webpack --watch",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "dra1n",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-core": "^4.7.8",
+    "babel-loader": "^4.1.0",
+    "webpack": "^1.7.3"
+  },
+  "dependencies": {
+    "firebase": "^2.2.2",
+    "html-truncate": "^1.0.5",
+    "lodash": "^3.5.0",
+    "parseUri": "^1.2.3-2",
+    "react": "^0.12.0",
+    "react-router": "^0.12.4",
+    "reflux": "^0.2.6",
+    "striptags": "^2.0.1"
+  }
+}
