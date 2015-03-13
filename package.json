@@ -4,9 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "./node_modules/.bin/webpack",
+    "build": "./node_modules/.bin/webpack --config webpack.config.min.js",
     "watch": "./node_modules/.bin/webpack --watch",
     "start": "node ./bin/www",
+    "postinstall": "npm run build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "dra1n",
@@ -14,6 +15,7 @@
   "devDependencies": {
     "babel-core": "^4.7.8",
     "babel-loader": "^4.1.0",
+    "extend": "^2.0.0",
     "webpack": "^1.7.3"
   },
   "dependencies": {
