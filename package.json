@@ -6,8 +6,8 @@
   "scripts": {
     "build": "./node_modules/.bin/webpack --config webpack.config.min.js",
     "watch": "./node_modules/.bin/webpack --watch",
+    "postinstall": "./node_modules/.bin/webpack --config webpack.config.min.js",
     "start": "node ./bin/www",
-    "postinstall": "npm run build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "dra1n",
