@@ -22,6 +22,16 @@ var ArticleStore = Reflux.createStore({
     sourceComponent.transitionTo('/');
   },
 
+  onChangeReadState(id) {
+    var article = _.filter(this.getDefaultData(), (_, _id) => {
+      return _id === id;
+    })[0];
+
+    article.read = !article.read;
+
+    articlesRef.child(id).update(article);
+  },
+
   getDefaultData(filter) {
     var cachedData = this.last || {};
     return _.isFunction(filter) ? filter(cachedData) : cachedData;

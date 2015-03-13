@@ -30,14 +30,22 @@ var Index = React.createClass({
 
   removeArticle(e) {
     e.preventDefault();
-    ArticleActions.removeArticle(this.state.article.id, this)
+    ArticleActions.removeArticle(this.getParams().id, this);
+  },
+
+  changeReadState(e) {
+    e.preventDefault();
+    ArticleActions.changeReadState(this.getParams().id);
   },
 
   render() {
+    var readState = this.state.article.read ? 'Mark as unread' : 'Mark as read';
+
     return (
       <div>
         <Header>
           <a href="#" onClick={this.removeArticle}>Remove</a>
+          <a href="#" onClick={this.changeReadState}>{readState}</a>
         </Header>
 
         <div className='content'>
