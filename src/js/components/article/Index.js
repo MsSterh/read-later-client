@@ -7,6 +7,7 @@ var Header = require('../common/Header');
 var Article = require('./Article');
 
 var ArticleStore = require('../../stores/ArticleStore');
+var ArticleActions = require('../../actions/ArticleActions');
 
 function currentArticle(articles) {
   return _.filter(articles, (_, id) => {
@@ -26,11 +27,16 @@ var Index = React.createClass({
     }
   },
 
+  removeArticle(e) {
+    e.preventDefault();
+    ArticleActions.removeArticle(this.state.article.id)
+  },
+
   render() {
     return (
       <div>
         <Header>
-          rofl
+          <a href="#" onClick={this.removeArticle}>Remove</a>
         </Header>
 
         <div className='content'>

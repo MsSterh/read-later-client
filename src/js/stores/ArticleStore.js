@@ -17,6 +17,10 @@ var ArticleStore = Reflux.createStore({
     this.trigger(this.last=snapshot.val() || {});
   },
 
+  onRemoveArticle(id) {
+    articlesRef.child(id).remove();
+  },
+
   getDefaultData(filter) {
     var cachedData = this.last || {};
     return _.isFunction(filter) ? filter(cachedData) : cachedData;
