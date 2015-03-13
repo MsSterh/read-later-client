@@ -1,6 +1,7 @@
 var Firebase = require('firebase');
 var Reflux = require('reflux');
 var ArticleActions = require('../actions/ArticleActions');
+var _ = require('lodash');
 
 var articlesRef = new Firebase("https://read-later.firebaseio.com/articles");
 
@@ -15,8 +16,9 @@ var ArticleStore = Reflux.createStore({
     this.trigger(this.last=snapshot.val() || {});
   },
 
-  getDefaultData() {
-    return this.last || {};
+  getDefaultData(filter) {
+    var cachedData = this.last || {};
+    return _.isFunction(filter) ? filter(cachedData) : cachedData;
   }
 });
 

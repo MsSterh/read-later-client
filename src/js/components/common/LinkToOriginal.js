@@ -3,7 +3,8 @@ var parseUri = require('parseUri');
 
 var LinkToOriginal = React.createClass({
   getHost() {
-    return parseUri(this.props.url).host;
+    var host = parseUri(this.props.url).host;
+    return host === 'undefined' ? '' : host;
   },
 
   render() {

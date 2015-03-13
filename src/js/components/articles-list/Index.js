@@ -29,7 +29,7 @@ var Index = React.createClass({
           rofl
         </Header>
 
-        <div classNames='articles-list'>
+        <div className='content'>
           {articleNodes}
         </div>
       </div>
