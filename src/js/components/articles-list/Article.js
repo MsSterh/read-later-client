@@ -1,5 +1,6 @@
 var React = require('react');
 var LinkToOriginal = require('./LinkToOriginal');
+var Link = require('react-router').Link;
 
 var truncate = require('html-truncate');
 var striptags = require('striptags');
@@ -13,7 +14,9 @@ var Article = React.createClass({
     return (
       <div>
         <h2>
-          {this.props.article.title}
+          <Link to="article" params={this.props.article}>
+            {this.props.article.title}
+          </Link>
         </h2>
         <p dangerouslySetInnerHTML={this.articleContent()} />
         <LinkToOriginal url={this.props.article.url} />

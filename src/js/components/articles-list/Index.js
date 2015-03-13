@@ -2,15 +2,18 @@ var React = require('react');
 var Reflux = require('reflux');
 var _ = require('lodash');
 
-var Article = require('./Article');
 var ArticleStore = require('../../stores/ArticleStore');
+
+var Article = require('./Article');
+var Header = require('../common/Header');
+
 
 var Index = React.createClass({
   mixins: [Reflux.connect(ArticleStore, 'articles')],
 
   getInitialState() {
     return {
-      articles: {}
+      articles: ArticleStore.getDefaultData()
     };
   },
 
@@ -21,8 +24,14 @@ var Index = React.createClass({
     });
 
     return (
-      <div classNames='articles-list'>
-        {articleNodes}
+      <div>
+        <Header>
+          rofl
+        </Header>
+
+        <div classNames='articles-list'>
+          {articleNodes}
+        </div>
       </div>
     );
   }

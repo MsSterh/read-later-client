@@ -99,8 +99,10 @@
 	var Reflux = __webpack_require__(29);
 	var _ = __webpack_require__(30);
 	
-	var Article = __webpack_require__(26);
 	var ArticleStore = __webpack_require__(27);
+	
+	var Article = __webpack_require__(26);
+	var Header = __webpack_require__(225);
 	
 	var Index = React.createClass({
 	  displayName: "Index",
@@ -109,7 +111,7 @@
 	
 	  getInitialState: function getInitialState() {
 	    return {
-	      articles: {}
+	      articles: ArticleStore.getDefaultData()
 	    };
 	  },
 	
@@ -121,8 +123,17 @@
 	
 	    return React.createElement(
 	      "div",
-	      { classNames: "articles-list" },
-	      articleNodes
+	      null,
+	      React.createElement(
+	        Header,
+	        null,
+	        "rofl"
+	      ),
+	      React.createElement(
+	        "div",
+	        { classNames: "articles-list" },
+	        articleNodes
+	      )
 	    );
 	  }
 	});
@@ -1967,6 +1978,7 @@
 	
 	var React = __webpack_require__(4);
 	var LinkToOriginal = __webpack_require__(224);
+	var Link = __webpack_require__(5).Link;
 	
 	var truncate = __webpack_require__(74);
 	var striptags = __webpack_require__(221);
@@ -1985,7 +1997,11 @@
 	      React.createElement(
 	        "h2",
 	        null,
-	        this.props.article.title
+	        React.createElement(
+	          Link,
+	          { to: "article", params: this.props.article },
+	          this.props.article.title
+	        )
 	      ),
 	      React.createElement("p", { dangerouslySetInnerHTML: this.articleContent() }),
 	      React.createElement(LinkToOriginal, { url: this.props.article.url })
@@ -2015,7 +2031,11 @@
 	  },
 	
 	  onReceiveArticles: function onReceiveArticles(snapshot) {
-	    this.trigger(snapshot.val() || {});
+	    this.trigger(this.last = snapshot.val() || {});
+	  },
+	
+	  getDefaultData: function getDefaultData() {
+	    return this.last || {};
 	  }
 	});
 	
@@ -35874,6 +35894,33 @@
 	});
 	
 	module.exports = LinkToOriginal;
+
+/***/ },
+/* 225 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	var React = __webpack_require__(4);
+	
+	var Header = React.createClass({
+	  displayName: "Header",
+	
+	  render: function render() {
+	    return React.createElement(
+	      "header",
+	      null,
+	      React.createElement(
+	        "h1",
+	        null,
+	        "Read Now"
+	      ),
+	      this.props.children
+	    );
+	  }
+	});
+	
+	module.exports = Header;
 
 /***/ }
 /******/ ]);
