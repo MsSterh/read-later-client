@@ -18,7 +18,8 @@ function currentArticle(articles) {
 var Index = React.createClass({
   mixins: [
     Reflux.connectFilter(ArticleStore, 'article', currentArticle),
-    Router.State
+    Router.State,
+    Router.Navigation
   ],
 
   getInitialState() {
@@ -29,7 +30,7 @@ var Index = React.createClass({
 
   removeArticle(e) {
     e.preventDefault();
-    ArticleActions.removeArticle(this.state.article.id)
+    ArticleActions.removeArticle(this.state.article.id, this)
   },
 
   render() {

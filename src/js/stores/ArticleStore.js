@@ -17,8 +17,9 @@ var ArticleStore = Reflux.createStore({
     this.trigger(this.last=snapshot.val() || {});
   },
 
-  onRemoveArticle(id) {
+  onRemoveArticle(id, sourceComponent) {
     articlesRef.child(id).remove();
+    sourceComponent.transitionTo('/');
   },
 
   getDefaultData(filter) {
