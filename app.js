@@ -1,8 +1,8 @@
 var path = require('path');
 var express = require('express');
 var app = express();
-var bodyParser = require('body-parser')
-var compression = require('compression')
+var bodyParser = require('body-parser');
+var compression = require('compression');
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(compression());
