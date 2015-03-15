@@ -2,9 +2,10 @@ var Firebase = require('firebase');
 var Reflux = require('reflux');
 var _ = require('lodash');
 
+var config = require('../config');
 var ArticleActions = require('../actions/ArticleActions');
 
-var articlesRef = new Firebase("https://read-later.firebaseio.com/articles");
+var articlesRef = new Firebase(config.FIREBASE_APP_URL).child('articles');
 
 var ArticleStore = Reflux.createStore({
   listenables: ArticleActions,
