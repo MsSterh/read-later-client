@@ -9,7 +9,7 @@ var Article = require('./Article');
 var ArticleStore = require('../../stores/ArticleStore');
 var ArticleActions = require('../../actions/ArticleActions');
 
-function currentArticle(articles) {
+function filterCurrent(articles) {
   return _.filter(articles, (_, id) => {
     return id === this.getParams().id;
   })[0] || {};
@@ -17,14 +17,14 @@ function currentArticle(articles) {
 
 var Index = React.createClass({
   mixins: [
-    Reflux.connectFilter(ArticleStore, 'article', currentArticle),
+    Reflux.connectFilter(ArticleStore, 'article', filterCurrent),
     Router.State,
     Router.Navigation
   ],
 
   getInitialState() {
     return {
-      article: ArticleStore.getDefaultData(currentArticle.bind(this))
+      article: ArticleStore.getDefaultData(filterCurrent.bind(this))
     }
   },
 
