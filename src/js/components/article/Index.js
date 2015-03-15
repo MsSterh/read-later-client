@@ -3,7 +3,7 @@ var Reflux = require('reflux');
 var Router = require('react-router');
 var _ = require('lodash');
 
-var Header = require('../common/Header');
+var Header = require('../common/layout/Header');
 var Article = require('./Article');
 
 var ArticleStore = require('../../stores/ArticleStore');

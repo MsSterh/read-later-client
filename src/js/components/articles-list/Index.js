@@ -5,7 +5,7 @@ var _ = require('lodash');
 var ArticleStore = require('../../stores/ArticleStore');
 
 var Article = require('./Article');
-var Header = require('../common/Header');
+var Header = require('../common/layout/Header');
 
 
 var Index = React.createClass({
