@@ -1,7 +1,8 @@
 var Firebase = require('firebase');
 var Reflux = require('reflux');
-require('whatwg-fetch');
 var _ = require('lodash');
+
+require('whatwg-fetch');
 
 var constants = require('../constants');
 var ArticleActions = require('../actions/ArticleActions');

@@ -7,7 +7,6 @@ var ArticleStore = require('../../stores/ArticleStore');
 var Article = require('./Article');
 var Header = require('../common/layout/Header');
 
-
 var Index = React.createClass({
   mixins: [Reflux.connect(ArticleStore, 'articles')],
 
@@ -25,9 +24,7 @@ var Index = React.createClass({
 
     return (
       <div>
-        <Header>
-          rofl
-        </Header>
+        <Header></Header>
 
         <div className='content'>
           {articleNodes}

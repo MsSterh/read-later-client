@@ -25,6 +25,14 @@ var NotificationStore = Reflux.createStore({
     this.trigger({
       active: false
     });
+  },
+
+  getDefaultState() {
+    return {
+      active: false,
+      text: '',
+      type: ''
+    }
   }
 });
 
