@@ -1,6 +1,8 @@
 var Reflux = require('reflux');
 var NotificationActions = require('../actions/NotificationActions');
 
+var DURATION = 3000;
+
 var NotificationStore = Reflux.createStore({
   listenables: NotificationActions,
 
@@ -15,6 +17,8 @@ var NotificationStore = Reflux.createStore({
       type: type,
       text: text
     });
+
+    setTimeout(NotificationActions.destroy, DURATION);
   },
 
   onDestroy() {
