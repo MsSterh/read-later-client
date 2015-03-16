@@ -1,0 +1,4 @@
+{
+  "FIREBASE_APP_URL": "https://read-later.firebaseio.com/",
+  "READABILITY_APP_URL": "http://read-later.herokuapp.com/scraper"
+}

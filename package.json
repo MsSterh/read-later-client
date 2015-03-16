@@ -24,12 +24,14 @@
     "extend": "^2.0.0",
     "firebase": "^2.2.2",
     "html-truncate": "^1.0.5",
+    "json-loader": "^0.5.1",
     "lodash": "^3.5.0",
     "parseUri": "^1.2.3-2",
     "react": "^0.12.0",
     "react-router": "^0.12.4",
     "reflux": "^0.2.6",
     "striptags": "^2.0.1",
-    "webpack": "^1.7.3"
+    "webpack": "^1.7.3",
+    "whatwg-fetch": "^0.7.0"
   }
 }

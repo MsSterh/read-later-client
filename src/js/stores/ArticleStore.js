@@ -1,12 +1,13 @@
 var Firebase = require('firebase');
 var Reflux = require('reflux');
+require('whatwg-fetch');
 var _ = require('lodash');
 
-var config = require('../config');
+var constants = require('../constants');
 var ArticleActions = require('../actions/ArticleActions');
 var NotificationActions = require('../actions/NotificationActions');
 
-var articlesRef = new Firebase(config.FIREBASE_APP_URL).child('articles');
+var articlesRef = new Firebase(constants.FIREBASE_APP_URL).child('articles');
 
 var ArticleStore = Reflux.createStore({
   listenables: ArticleActions,
@@ -23,6 +24,22 @@ var ArticleStore = Reflux.createStore({
     articlesRef.child(id).remove();
     sourceComponent.transitionTo('/');
     NotificationActions.create('Item has been successfully removed');
+  },
+
+  onAddArticle(url) {
+    fetch(constants.READABILITY_APP_URL, {
+      method: 'post',
+      headers: {
+        "Content-type": "application/x-www-form-urlencoded; charset=UTF-8"
+      },
+      body: `url=${ url }`
+    })
+    .then(() => {
+      NotificationActions.create('Item has been successfully added');
+    })
+    .catch((error) => {
+      NotificationActions.create('error', error);
+    });
   },
 
   onChangeReadState(id) {
