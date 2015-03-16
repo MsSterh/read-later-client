@@ -1,12 +1,16 @@
 var React = require('react');
 var Router = require('react-router');
+var Notification = require('./common/Notification');
 
 var RouteHandler = Router.RouteHandler;
 
 var App = React.createClass({
   render() {
     return (
-      <RouteHandler />
+      <div>
+        <Notification />
+        <RouteHandler />
+      </div>
     );
   }
 });

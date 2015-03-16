@@ -4,6 +4,7 @@ var _ = require('lodash');
 
 var config = require('../config');
 var ArticleActions = require('../actions/ArticleActions');
+var NotificationActions = require('../actions/NotificationActions');
 
 var articlesRef = new Firebase(config.FIREBASE_APP_URL).child('articles');
 
@@ -21,6 +22,7 @@ var ArticleStore = Reflux.createStore({
   onRemoveArticle(id, sourceComponent) {
     articlesRef.child(id).remove();
     sourceComponent.transitionTo('/');
+    NotificationActions.create('Item has been successfully removed');
   },
 
   onChangeReadState(id) {
@@ -29,8 +31,9 @@ var ArticleStore = Reflux.createStore({
     })[0];
 
     article.read = !article.read;
-
     articlesRef.child(id).update(article);
+
+    NotificationActions.create(`Item has been marked as "${article.read ? 'read' : 'unread'}"`);
   },
 
   getDefaultData(filter) {
