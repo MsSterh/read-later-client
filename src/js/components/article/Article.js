@@ -1,7 +1,7 @@
 var React = require('react');
 var LinkToOriginal = require('../common/LinkToOriginal');
 
-var Index = React.createClass({
+var Article = React.createClass({
   articleContent() {
     return { __html: this.props.article.content }
   },
@@ -20,4 +20,4 @@ var Index = React.createClass({
   }
 });
 
-module.exports = Index;
+module.exports = Article;

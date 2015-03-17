@@ -15,7 +15,7 @@ function filterCurrent(articles) {
   })[0];
 }
 
-var Index = React.createClass({
+var ArticleComponent = React.createClass({
   mixins: [
     Reflux.connectFilter(ArticleStore, 'article', filterCurrent),
     Router.State,
@@ -56,4 +56,4 @@ var Index = React.createClass({
   }
 });
 
-module.exports = Index;
+module.exports = ArticleComponent;

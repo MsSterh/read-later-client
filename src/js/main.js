@@ -2,8 +2,8 @@ var React = require('react');
 var Router = require('react-router');
 
 var App = require('./components/App');
-var ArticlesList = require('./components/articles-list/Index');
-var Article = require('./components/article/Index');
+var ArticlesList = require('./components/ArticlesList/Index');
+var Article = require('./components/Article/Index');
 
 var Route = Router.Route;
 var DefaultRoute = Router.DefaultRoute;

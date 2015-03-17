@@ -7,7 +7,7 @@ var ArticleStore = require('../../stores/ArticleStore');
 var Article = require('./Article');
 var Header = require('../common/Header/Index');
 
-var Index = React.createClass({
+var ArticlesList = React.createClass({
   mixins: [Reflux.connect(ArticleStore, 'articles')],
 
   getInitialState() {
@@ -34,4 +34,4 @@ var Index = React.createClass({
   }
 });
 
-module.exports = Index;
+module.exports = ArticlesList;
