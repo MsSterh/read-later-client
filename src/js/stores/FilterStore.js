@@ -6,7 +6,7 @@ var FilterStore = Reflux.createStore({
 
   init() {
     this._filters = {
-      showAll: false,
+      unreadOnly: true,
       search: ''
     }
   },
@@ -16,9 +16,9 @@ var FilterStore = Reflux.createStore({
     this.trigger(this._filters);
   },
 
-  switchDisplayFilter(showAll) {
-    this._filters.showAll = !this._filters.showAll;
-    this.trigger(this.filters);
+  onSwitchDisplayFilter(unreadOnly) {
+    this._filters.unreadOnly = !this._filters.unreadOnly;
+    this.trigger(this._filters);
   },
 
   getDefaultState() {
