@@ -21,7 +21,7 @@ var FilterStore = Reflux.createStore({
     this.trigger(this._filters);
   },
 
-  getDefaultState() {
+  getFilters() {
     return this._filters;
   }
 });

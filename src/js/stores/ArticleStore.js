@@ -5,6 +5,7 @@ var _ = require('lodash');
 require('whatwg-fetch');
 
 var constants = require('../constants');
+var FilterStore = require('./FilterStore');
 var ArticleActions = require('../actions/ArticleActions');
 var NotificationActions = require('../actions/NotificationActions');
 
@@ -13,12 +14,21 @@ var articlesRef = new Firebase(constants.FIREBASE_APP_URL).child('articles');
 var ArticleStore = Reflux.createStore({
   listenables: ArticleActions,
 
+
   init() {
     articlesRef.on("value", ArticleActions.receiveArticles);
+    this.listenTo(FilterStore, this.onFilterChange);
+    this.filters = FilterStore.getFilters();
+  },
+
+  onFilterChange(filters) {
+    this.filters = filters;
+    this.trigger(this.getArticles())
   },
 
   onReceiveArticles(snapshot) {
-    this.trigger(this.last=snapshot.val() || {});
+    this.last = snapshot.val() || {};
+    this.trigger(this.getArticles());
   },
 
   onRemoveArticle(id, sourceComponent) {
@@ -38,15 +48,13 @@ var ArticleStore = Reflux.createStore({
     .then(() => {
       NotificationActions.create('Item has been successfully added');
     })
-    .catch((error) => {
+    .catch(error => {
       NotificationActions.create('error', error);
     });
   },
 
   onChangeReadState(id) {
-    var article = _.filter(this.getDefaultData(), (_, _id) => {
-      return _id === id;
-    })[0];
+    var article = this.filterById(id);
 
     article.read = !article.read;
     articlesRef.child(id).update(article);
@@ -54,9 +62,30 @@ var ArticleStore = Reflux.createStore({
     NotificationActions.create(`Item has been marked as "${article.read ? 'read' : 'unread'}"`);
   },
 
-  getDefaultData(filter) {
-    var cachedData = this.last || {};
-    return _.isFunction(filter) ? filter(cachedData) : cachedData;
+  getArticle(id) {
+    return this.filterById(id);
+  },
+
+  getArticles() {
+    return this.filteredArticles();
+  },
+
+  filterById(id) {
+    return _.filter(this.getArticles(), (_, _id) => {
+      return _id === id;
+    })[0];
+  },
+
+  filteredArticles() {
+    var articles = this.last || {};
+
+    if (this.filters.unreadOnly) {
+      articles = _.filter(articles, a => {
+        return !a.read;
+      });
+    }
+
+    return articles;
   }
 });
 

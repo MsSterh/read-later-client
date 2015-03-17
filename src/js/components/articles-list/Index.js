@@ -12,7 +12,7 @@ var Index = React.createClass({
 
   getInitialState() {
     return {
-      articles: ArticleStore.getDefaultData()
+      articles: ArticleStore.getArticles()
     };
   },
 

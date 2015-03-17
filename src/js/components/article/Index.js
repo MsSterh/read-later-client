@@ -12,7 +12,7 @@ var ArticleActions = require('../../actions/ArticleActions');
 function filterCurrent(articles) {
   return _.filter(articles, (_, id) => {
     return id === this.getParams().id;
-  })[0] || {};
+  })[0];
 }
 
 var Index = React.createClass({
@@ -24,7 +24,7 @@ var Index = React.createClass({
 
   getInitialState() {
     return {
-      article: ArticleStore.getDefaultData(filterCurrent.bind(this))
+      article: ArticleStore.getArticle(this.getParams().id)
     }
   },
 

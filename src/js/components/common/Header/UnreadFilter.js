@@ -8,7 +8,7 @@ var UnreadFilter = React.createClass({
   mixins: [Reflux.connect(FilterStore)],
 
   getInitialState() {
-    return FilterStore.getDefaultState();
+    return FilterStore.getFilters();
   },
 
   switchDisplayFilter(e) {
