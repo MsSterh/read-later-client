@@ -11,6 +11,7 @@ module.exports = {
       { test: /\.css/, loader: "style!css" },
       { test: /config\.js$/, loader: "envify" },
       { test: /\.json$/, loader: 'json' },
+      { test: /\.jsx$/, loader: 'babel' },
       { test: /\.js$/, exclude: /node_modules/, loader: 'babel' }
     ]
   }

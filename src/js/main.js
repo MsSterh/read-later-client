@@ -1,3 +1,4 @@
+require('highlight.js/styles/railscasts.css');
 require('../styles/main.css');
 require('../styles/normalize.min.css');
 

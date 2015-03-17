@@ -1,4 +1,5 @@
 var React = require('react');
+var Highlight = require('react-highlight');
 var LinkToOriginal = require('../LinkToOriginal');
 
 var Article = React.createClass({
@@ -14,7 +15,9 @@ var Article = React.createClass({
           <LinkToOriginal url={this.props.article.url} />
         </header>
 
-        <div dangerouslySetInnerHTML={this.articleContent()} />
+        <Highlight innerHTML={true} >
+          {this.props.article.content}
+        </Highlight>
       </article>
     );
   }
