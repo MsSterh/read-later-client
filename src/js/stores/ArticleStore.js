@@ -1,6 +1,6 @@
 var Firebase = require('firebase');
 var Reflux = require('reflux');
-var _ = require('lodash');
+var { seq, filter, compose, take } = require('transducers.js');
 
 require('whatwg-fetch');
 
@@ -11,7 +11,9 @@ var NotificationActions = require('../actions/NotificationActions');
 
 var articlesRef = new Firebase(constants.FIREBASE_APP_URL).child('articles');
 
+
 var ArticleStore = Reflux.createStore({
+
   listenables: ArticleActions,
 
 
@@ -21,21 +23,25 @@ var ArticleStore = Reflux.createStore({
     this.filters = FilterStore.getFilters();
   },
 
+
   onFilterChange(filters) {
     this.filters = filters;
     this.trigger(this.getArticles())
   },
+
 
   onReceiveArticles(snapshot) {
     this.last = snapshot.val() || {};
     this.trigger(this.getArticles());
   },
 
+
   onRemoveArticle(id, sourceComponent) {
     articlesRef.child(id).remove();
     sourceComponent.transitionTo('/');
     NotificationActions.create('Item has been successfully removed');
   },
+
 
   onAddArticle(url) {
     fetch(constants.READABILITY_APP_URL, {
@@ -53,6 +59,7 @@ var ArticleStore = Reflux.createStore({
     });
   },
 
+
   onChangeReadState(id) {
     var article = this.filterById(id);
 
@@ -66,34 +73,36 @@ var ArticleStore = Reflux.createStore({
     return this.filterById(id);
   },
 
+
   getArticles() {
     return this.filteredArticles();
   },
 
+
   filterById(id) {
-    return _.filter(this.getArticles(), (_, _id) => {
-      return _id === id;
-    })[0];
+    return seq(this.getArticles(), compose(
+      filter(([_id, _]) => _id === id),
+      take(1)
+    ));
   },
+
 
   filteredArticles() {
     var articles = this.last || {};
+    var transformations = [];
 
     if (this.filters.search) {
       let search = RegExp(this.filters.search, 'i');
-      articles = _.filter(articles, a => {
-        return a.title.match(search) || a.url.match(search);
-      });
+      transformations.push(filter(([_, a]) => a.title.match(search) || a.url.match(search)));
     }
 
     if (this.filters.unreadOnly) {
-      articles = _.filter(articles, a => {
-        return !a.read;
-      });
+      transformations.push(filter(([_, a]) => !a.read));
     }
 
-    return articles;
+    return seq(articles, compose.apply(null, transformations));
   }
+
 });
 
 module.exports = ArticleStore;

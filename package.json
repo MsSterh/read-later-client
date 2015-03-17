@@ -31,6 +31,7 @@
     "react-router": "^0.12.4",
     "reflux": "^0.2.6",
     "striptags": "^2.0.1",
+    "transducers.js": "^0.2.3",
     "webpack": "^1.7.3",
     "whatwg-fetch": "^0.7.0"
   }
