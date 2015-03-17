@@ -1,5 +1,5 @@
 var React = require('react');
-var LinkToOriginal = require('../common/LinkToOriginal');
+var LinkToOriginal = require('../LinkToOriginal');
 
 var Article = React.createClass({
   articleContent() {

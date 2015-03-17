@@ -1,5 +1,5 @@
 var React = require('react');
-var LinkToOriginal = require('../common/LinkToOriginal');
+var LinkToOriginal = require('../LinkToOriginal');
 var Link = require('react-router').Link;
 
 var truncate = require('html-truncate');

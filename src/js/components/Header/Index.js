@@ -3,7 +3,7 @@ var Link = require('react-router').Link;
 
 var AddArticleForm = require('./AddArticleForm');
 var UnreadFilter = require('./UnreadFilter');
-var ArticleActions = require('../../../actions/ArticleActions');
+var ArticleActions = require('../../actions/ArticleActions');
 
 var Header = React.createClass({
   addArticle(url) {

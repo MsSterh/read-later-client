@@ -1,7 +1,7 @@
 var React = require('react');
 var Reflux = require('reflux');
 
-var NotificationStore = require('../../stores/NotificationStore');
+var NotificationStore = require('../stores/NotificationStore');
 
 var Notification = React.createClass({
   mixins: [Reflux.connect(NotificationStore)],

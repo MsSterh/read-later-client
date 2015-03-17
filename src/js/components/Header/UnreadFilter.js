@@ -1,8 +1,8 @@
 var React = require('react');
 var Reflux = require('reflux');
 
-var FilterStore = require('../../../stores/FilterStore');
-var FilterActions = require('../../../actions/FilterActions');
+var FilterStore = require('../../stores/FilterStore');
+var FilterActions = require('../../actions/FilterActions');
 
 var UnreadFilter = React.createClass({
   mixins: [Reflux.connect(FilterStore)],

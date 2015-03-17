@@ -5,7 +5,7 @@ var _ = require('lodash');
 var ArticleStore = require('../../stores/ArticleStore');
 
 var Article = require('./Article');
-var Header = require('../common/Header/Index');
+var Header = require('../Header/Index');
 
 var ArticlesList = React.createClass({
   mixins: [Reflux.connect(ArticleStore, 'articles')],
