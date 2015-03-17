@@ -5,6 +5,7 @@ var _ = require('lodash');
 var ArticleStore = require('../../stores/ArticleStore');
 var Article = require('./Article');
 var UnreadFilter = require('./UnreadFilter');
+var Search = require('./Search');
 var Header = require('../Header/Index');
 
 var ArticlesList = React.createClass({
@@ -26,6 +27,7 @@ var ArticlesList = React.createClass({
       <div>
         <Header>
           <UnreadFilter />
+          <Search />
         </Header>
 
         <div className='content'>

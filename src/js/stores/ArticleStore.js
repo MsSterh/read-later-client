@@ -79,6 +79,13 @@ var ArticleStore = Reflux.createStore({
   filteredArticles() {
     var articles = this.last || {};
 
+    if (this.filters.search) {
+      let search = RegExp(this.filters.search, 'i');
+      articles = _.filter(articles, a => {
+        return a.title.match(search) || a.url.match(search);
+      });
+    }
+
     if (this.filters.unreadOnly) {
       articles = _.filter(articles, a => {
         return !a.read;
