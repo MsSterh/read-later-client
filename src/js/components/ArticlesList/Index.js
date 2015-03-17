@@ -25,12 +25,14 @@ var ArticlesList = React.createClass({
     return (
       <div>
         <Header>
-          <UnreadFilter />
           <Search />
+          <UnreadFilter />
         </Header>
 
-        <div className='content'>
-          {articleNodes}
+        <div className='main-container'>
+          <div className='main'>
+            {articleNodes}
+          </div>
         </div>
       </div>
     );

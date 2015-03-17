@@ -21,8 +21,8 @@ var Search = React.createClass({
 
   render() {
     return (
-      <div>
-        <input type="search" value={this.state.query} ref="search" onChange={this.onChangeHandler} />
+      <div className='search'>
+        <input type='search' placeholder='Search' value={this.state.query} ref='search' onChange={this.onChangeHandler} />
       </div>
     );
   }

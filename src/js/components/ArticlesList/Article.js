@@ -7,7 +7,7 @@ var striptags = require('striptags');
 
 var Article = React.createClass({
   shortContent() {
-    return truncate(striptags(this.props.article.content), 400)
+    return truncate(striptags(this.props.article.content), 300)
   },
 
   params() {
@@ -17,11 +17,11 @@ var Article = React.createClass({
   render() {
     return (
       <article>
-        <h2>
-          <Link to="article" params={this.params()}>
+        <Link to="article" params={this.params()}>
+          <h1>
             {this.props.article.title}
-          </Link>
-        </h2>
+          </h1>
+        </Link>
         <p>{this.shortContent()}</p>
         <footer>
           <LinkToOriginal url={this.props.article.url} />

@@ -18,6 +18,7 @@
     "babel-loader": "^4.1.0",
     "body-parser": "^1.12.0",
     "compression": "^1.4.2",
+    "css-loader": "^0.9.1",
     "envify": "^1.2.1",
     "envify-loader": "^0.1.0",
     "express": "^4.12.2",
@@ -31,6 +32,7 @@
     "react-router": "^0.12.4",
     "reflux": "^0.2.6",
     "striptags": "^2.0.1",
+    "style-loader": "^0.8.3",
     "transducers.js": "^0.2.3",
     "webpack": "^1.7.3",
     "whatwg-fetch": "^0.7.0"

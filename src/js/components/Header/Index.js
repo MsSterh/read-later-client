@@ -11,13 +11,15 @@ var Header = React.createClass({
 
   render() {
     return (
-      <header>
-        <h1>
-          <Link to="app">Read Now</Link>
-        </h1>
-        <AddArticleForm onSubmitHandler={this.addArticle} />
-        {this.props.children}
-      </header>
+      <div className='header-container'>
+        <header>
+          <h1>
+            <Link to="app">Read Now</Link>
+          </h1>
+          <AddArticleForm onSubmitHandler={this.addArticle} />
+          {this.props.children}
+        </header>
+      </div>
     );
   }
 });

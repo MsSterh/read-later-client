@@ -8,9 +8,10 @@ module.exports = {
   },
   module: {
     loaders: [
-      { test: /config\.js$/, loader: "envify-loader" },
-      { test: /\.json$/, loader: 'json-loader' },
-      { test: /\.js$/, exclude: /node_modules/, loader: 'babel-loader' }
+      { test: /\.css/, loader: "style!css" },
+      { test: /config\.js$/, loader: "envify" },
+      { test: /\.json$/, loader: 'json' },
+      { test: /\.js$/, exclude: /node_modules/, loader: 'babel' }
     ]
   }
 }

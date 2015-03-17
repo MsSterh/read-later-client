@@ -20,7 +20,7 @@ var UnreadFilter = React.createClass({
     var content = this.state.unreadOnly ? 'Show All' : 'Show "unread" only';
 
     return (
-      <div>
+      <div className='show_archive'>
         <a href="#" onClick={this.switchDisplayFilter}>{content}</a>
       </div>
     );

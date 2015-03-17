@@ -52,8 +52,10 @@ var ArticleComponent = React.createClass({
           <a href="#" onClick={this.changeReadState}>{readState}</a>
         </Header>
 
-        <div className='content'>
-          <Article article={this.state.article} />
+        <div className='main-container'>
+          <div className='article'>
+            <Article article={this.state.article} />
+          </div>
         </div>
       </div>
     );

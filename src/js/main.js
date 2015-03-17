@@ -1,3 +1,6 @@
+require('../styles/main.css');
+require('../styles/normalize.min.css');
+
 var React = require('react');
 var Router = require('react-router');
 
