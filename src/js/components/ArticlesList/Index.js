@@ -1,6 +1,6 @@
 var React = require('react');
 var Reflux = require('reflux');
-var _ = require('lodash');
+var { into, map } = require('transducers.js');
 
 var ArticleStore = require('../../stores/ArticleStore');
 var Article = require('./Article');
@@ -18,10 +18,9 @@ var ArticlesList = React.createClass({
   },
 
   render() {
-    var articleNodes = _.map(this.state.articles, (article, id) => {
-      article.id = id;
-      return <Article key={id} article={article} />
-    });
+    var articleNodes = into([], map(([id, article]) => {
+      return <Article key={id} id={id} article={article} />
+    }), this.state.articles);
 
     return (
       <div>

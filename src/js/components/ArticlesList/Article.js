@@ -10,11 +10,15 @@ var Article = React.createClass({
     return truncate(striptags(this.props.article.content), 400)
   },
 
+  params() {
+    return { id: this.props.id }
+  },
+
   render() {
     return (
       <article>
         <h2>
-          <Link to="article" params={this.props.article}>
+          <Link to="article" params={this.params()}>
             {this.props.article.title}
           </Link>
         </h2>

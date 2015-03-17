@@ -1,6 +1,6 @@
 var Firebase = require('firebase');
 var Reflux = require('reflux');
-var { seq, filter, compose, take } = require('transducers.js');
+var { into, seq, filter, compose, map, take } = require('transducers.js');
 
 require('whatwg-fetch');
 
@@ -69,6 +69,7 @@ var ArticleStore = Reflux.createStore({
     NotificationActions.create(`Item has been marked as "${article.read ? 'read' : 'unread'}"`);
   },
 
+
   getArticle(id) {
     return this.filterById(id);
   },
@@ -80,10 +81,11 @@ var ArticleStore = Reflux.createStore({
 
 
   filterById(id) {
-    return seq(this.getArticles(), compose(
-      filter(([_id, _]) => _id === id),
+    return into({}, compose(
+      filter(([_id, _]) => id === _id),
+      map(([_, a]) => a),
       take(1)
-    ));
+    ), this.getArticles());
   },
 
 

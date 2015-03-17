@@ -1,7 +1,7 @@
 var React = require('react');
 var Reflux = require('reflux');
 var Router = require('react-router');
-var _ = require('lodash');
+var { into, filter, take, map, compose } = require('transducers.js');
 
 var Header = require('../Header/Index');
 var Article = require('./Article');
@@ -9,11 +9,15 @@ var Article = require('./Article');
 var ArticleStore = require('../../stores/ArticleStore');
 var ArticleActions = require('../../actions/ArticleActions');
 
+
 function filterCurrent(articles) {
-  return _.filter(articles, (_, id) => {
-    return id === this.getParams().id;
-  })[0];
+  return into({}, compose(
+    filter(([id, _]) => id === this.getParams().id),
+    map(([_, a]) => a),
+    take(1)
+  ), articles);
 }
+
 
 var ArticleComponent = React.createClass({
   mixins: [
@@ -39,7 +43,7 @@ var ArticleComponent = React.createClass({
   },
 
   render() {
-    var readState = this.state.article.read ? 'Mark as unread' : 'Mark as read';
+    var readState = this.state.article && this.state.article.read ? 'Mark as unread' : 'Mark as read';
 
     return (
       <div>
