@@ -3,8 +3,8 @@ var Reflux = require('reflux');
 var _ = require('lodash');
 
 var ArticleStore = require('../../stores/ArticleStore');
-
 var Article = require('./Article');
+var UnreadFilter = require('./UnreadFilter');
 var Header = require('../Header/Index');
 
 var ArticlesList = React.createClass({
@@ -24,7 +24,9 @@ var ArticlesList = React.createClass({
 
     return (
       <div>
-        <Header></Header>
+        <Header>
+          <UnreadFilter />
+        </Header>
 
         <div className='content'>
           {articleNodes}
