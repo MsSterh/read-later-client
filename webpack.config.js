@@ -9,6 +9,7 @@ module.exports = {
   module: {
     loaders: [
       { test: /\.css/, loader: "style!css" },
+      { test: /\.txt/, loader: "raw" },
       { test: /config\.js$/, loader: "envify" },
       { test: /\.json$/, loader: 'json' },
       { test: /\.jsx$/, loader: 'babel' },

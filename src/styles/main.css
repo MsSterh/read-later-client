@@ -41,7 +41,6 @@ input:focus {
 /* header */
 
 .header-container {
-  //background: #fff;
   border-bottom: 1px solid #eee;
   box-shadow: 0 0 2px #eee;
 }
@@ -109,6 +108,16 @@ input:focus {
   top: 0;
   right: 20px;
 }
+
+
+/* Footer */
+.footer-container > footer {
+  margin: 0 auto;
+  padding: 20px;
+  position: relative;
+  width: 80%;
+}
+
 
 /* main */
 .main-container {
