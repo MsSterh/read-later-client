@@ -4,5 +4,6 @@ module.exports = Reflux.createActions([
   'receiveArticles',
   'removeArticle',
   'addArticle',
-  'changeReadState'
+  'changeReadState',
+  'filterChange'
 ]);

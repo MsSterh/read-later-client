@@ -1,15 +1,15 @@
-var Firebase = require('firebase');
 var Reflux = require('reflux');
 var { into, seq, filter, compose, map, take } = require('transducers.js');
-
 require('whatwg-fetch');
 
 var constants = require('../constants');
-var FilterStore = require('./FilterStore');
-var ArticleActions = require('../actions/ArticleActions');
-var NotificationActions = require('../actions/NotificationActions');
 
-var articlesRef = new Firebase(constants.FIREBASE_APP_URL).child('articles');
+var FilterStore = require('./FilterStore');
+var FirebaseStore = require('./FirebaseStore');
+
+var ArticleActions = require('../actions/ArticleActions');
+var FirebaseActions = require('../actions/FirebaseActions');
+var NotificationActions = require('../actions/NotificationActions');
 
 
 var ArticleStore = Reflux.createStore({
@@ -18,8 +18,8 @@ var ArticleStore = Reflux.createStore({
 
 
   init() {
-    articlesRef.on("value", ArticleActions.receiveArticles);
-    this.listenTo(FilterStore, this.onFilterChange);
+    this.listenTo(FilterStore, ArticleActions.filterChange);
+    this.listenTo(FirebaseStore, ArticleActions.receiveArticles);
     this.filters = FilterStore.getFilters();
   },
 
@@ -30,14 +30,14 @@ var ArticleStore = Reflux.createStore({
   },
 
 
-  onReceiveArticles(snapshot) {
-    this.last = snapshot.val() || {};
+  onReceiveArticles(articles) {
+    this.last = articles || {};
     this.trigger(this.getArticles());
   },
 
 
   onRemoveArticle(id, sourceComponent) {
-    articlesRef.child(id).remove();
+    FirebaseActions.removeItem(id);
     sourceComponent.transitionTo('/');
     NotificationActions.create('Item has been successfully removed');
   },
@@ -62,10 +62,8 @@ var ArticleStore = Reflux.createStore({
 
   onChangeReadState(id) {
     var article = this.filterById(id);
-
     article.read = !article.read;
-    articlesRef.child(id).update(article);
-
+    FirebaseActions.updateItem(id, article);
     NotificationActions.create(`Item has been marked as "${article.read ? 'read' : 'unread'}"`);
   },
 
