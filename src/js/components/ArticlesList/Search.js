@@ -1,28 +1,32 @@
 var React = require('react');
-var _ = require('lodash');
+var Reflux = require('reflux');
+var debounce = require('lodash').debounce;
 
 var FilterActions = require('../../actions/FilterActions');
+var FilterStore = require('../../stores/FilterStore');
 
 var Search = React.createClass({
+  mixins: [Reflux.connect(FilterStore)],
+
   getInitialState() {
-    return { query: '' };
+    return FilterStore.getFilters();
   },
 
   componentWillMount() {
-    this.handleSearchDebounced = _.debounce(() => {
-      FilterActions.search(this.state.query);
+    this.handleSearchDebounced = debounce(() => {
+      FilterActions.search(this.state.search);
     }, 500);
   },
 
   onChangeHandler() {
-    this.setState({ query: this.refs.search.getDOMNode().value });
+    this.setState({ search: this.refs.search.getDOMNode().value });
     this.handleSearchDebounced();
   },
 
   render() {
     return (
       <div className='search'>
-        <input type='search' placeholder='Search' value={this.state.query} ref='search' onChange={this.onChangeHandler} />
+        <input type='search' placeholder='Search' value={this.state.search} ref='search' onChange={this.onChangeHandler} />
       </div>
     );
   }
