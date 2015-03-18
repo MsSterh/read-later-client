@@ -40,12 +40,13 @@ var ArticlesStore = Reflux.createStore({
       },
       body: `url=${ url }`
     })
-    .then(() => {
-      NotificationActions.create('Item has been successfully added');
+    .then((response) => {
+      if (response.status === 200) {
+        NotificationActions.create('Item has been successfully added');
+      } else {
+        NotificationActions.create('error', response.statusText);
+      }
     })
-    .catch(error => {
-      NotificationActions.create('error', error);
-    });
   },
 
   getArticles() {
