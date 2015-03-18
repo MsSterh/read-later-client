@@ -2,7 +2,7 @@ var React = require('react');
 var Reflux = require('reflux');
 var { into, map } = require('transducers.js');
 
-var ArticleStore = require('../../stores/ArticleStore');
+var ArticleStore = require('../../stores/ArticlesStore');
 var Article = require('./Article');
 var UnreadFilter = require('./UnreadFilter');
 var Search = require('./Search');

@@ -7,20 +7,22 @@ var constants = require('../constants');
 var FilterStore = require('./FilterStore');
 var FirebaseStore = require('./FirebaseStore');
 
-var ArticleActions = require('../actions/ArticleActions');
+var ArticlesActions = require('../actions/ArticlesActions');
 var FirebaseActions = require('../actions/FirebaseActions');
 var NotificationActions = require('../actions/NotificationActions');
 
 
-var ArticleStore = Reflux.createStore({
+var ArticlesStore = Reflux.createStore({
 
-  listenables: ArticleActions,
+  listenables: ArticlesActions,
 
 
   init() {
-    this.listenTo(FilterStore, ArticleActions.filterChange);
-    this.listenTo(FirebaseStore, ArticleActions.receiveArticles);
+    this.listenTo(FilterStore, ArticlesActions.filterChange);
+    this.listenTo(FirebaseStore, ArticlesActions.receiveArticles);
+
     this.filters = FilterStore.getFilters();
+    this.articles = {};
   },
 
 
@@ -31,7 +33,7 @@ var ArticleStore = Reflux.createStore({
 
 
   onReceiveArticles(articles) {
-    this.last = articles || {};
+    this.articles = articles || {};
     this.trigger(this.getArticles());
   },
 
@@ -88,7 +90,7 @@ var ArticleStore = Reflux.createStore({
 
 
   filteredArticles() {
-    var articles = this.last || {};
+    var articles = this.articles;
     var transformations = [];
 
     if (this.filters.search) {
@@ -105,4 +107,4 @@ var ArticleStore = Reflux.createStore({
 
 });
 
-module.exports = ArticleStore;
+module.exports = ArticlesStore;

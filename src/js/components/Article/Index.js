@@ -6,8 +6,8 @@ var { into, filter, take, map, compose } = require('transducers.js');
 var Header = require('../Header/Index');
 var Article = require('./Article');
 
-var ArticleStore = require('../../stores/ArticleStore');
-var ArticleActions = require('../../actions/ArticleActions');
+var ArticleStore = require('../../stores/ArticlesStore');
+var ArticleActions = require('../../actions/ArticlesActions');
 
 
 function filterCurrent(articles) {
