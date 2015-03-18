@@ -1,27 +1,16 @@
 var React = require('react');
 var Reflux = require('reflux');
 var Router = require('react-router');
-var { into, filter, take, map, compose } = require('transducers.js');
 
 var Header = require('../Header/Index');
 var Article = require('./Article');
 
-var ArticleStore = require('../../stores/ArticlesStore');
-var ArticleActions = require('../../actions/ArticlesActions');
-
-
-function filterCurrent(articles) {
-  return into({}, compose(
-    filter(([id, _]) => id === this.getParams().id),
-    map(([_, a]) => a),
-    take(1)
-  ), articles);
-}
-
+var ArticleStore = require('../../stores/ArticleStore');
+var ArticleActions = require('../../actions/ArticleActions');
 
 var ArticleComponent = React.createClass({
   mixins: [
-    Reflux.connectFilter(ArticleStore, 'article', filterCurrent),
+    Reflux.listenTo(ArticleStore, 'onArticleUpdate'),
     Router.State,
     Router.Navigation
   ],
@@ -30,6 +19,12 @@ var ArticleComponent = React.createClass({
     return {
       article: ArticleStore.getArticle(this.getParams().id)
     }
+  },
+
+  onArticleUpdate(articles) {
+    this.setState({
+      article: ArticleStore.getArticle(this.getParams().id)
+    });
   },
 
   removeArticle(e) {

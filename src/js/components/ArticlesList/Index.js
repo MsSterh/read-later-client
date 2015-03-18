@@ -2,18 +2,18 @@ var React = require('react');
 var Reflux = require('reflux');
 var { into, map } = require('transducers.js');
 
-var ArticleStore = require('../../stores/ArticlesStore');
+var ArticlesStore = require('../../stores/ArticlesStore');
 var Article = require('./Article');
 var UnreadFilter = require('./UnreadFilter');
 var Search = require('./Search');
 var Header = require('../Header/Index');
 
 var ArticlesList = React.createClass({
-  mixins: [Reflux.connect(ArticleStore, 'articles')],
+  mixins: [Reflux.connect(ArticlesStore, 'articles')],
 
   getInitialState() {
     return {
-      articles: ArticleStore.getArticles()
+      articles: ArticlesStore.getArticles()
     };
   },
 
