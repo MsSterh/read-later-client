@@ -3,10 +3,6 @@ var Highlight = require('react-highlight');
 var LinkToOriginal = require('../LinkToOriginal');
 
 var Article = React.createClass({
-  articleContent() {
-    return { __html: this.props.article.content }
-  },
-
   render() {
     return (
       <article>
