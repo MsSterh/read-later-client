@@ -1,7 +1,7 @@
-var React = require('react');
-var Reflux = require('reflux');
+import React from 'react';
+import Reflux from 'reflux';
 
-var NotificationStore = require('../stores/NotificationStore');
+import NotificationStore from '../stores/NotificationStore';
 
 var Notification = React.createClass({
   mixins: [Reflux.connect(NotificationStore)],
@@ -25,4 +25,4 @@ var Notification = React.createClass({
   }
 });
 
-module.exports = Notification;
+export default Notification;

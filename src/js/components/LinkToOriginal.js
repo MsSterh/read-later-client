@@ -1,5 +1,5 @@
-var React = require('react');
-var parseUri = require('parseUri');
+import React from 'react';
+import parseUri from 'parseUri';
 
 var LinkToOriginal = React.createClass({
   getHost() {
@@ -14,4 +14,4 @@ var LinkToOriginal = React.createClass({
   }
 });
 
-module.exports = LinkToOriginal;
+export default LinkToOriginal;

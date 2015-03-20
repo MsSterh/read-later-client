@@ -1,9 +1,9 @@
-var React = require('react');
-var LinkToOriginal = require('../LinkToOriginal');
-var Link = require('react-router').Link;
+import React from 'react';
+import LinkToOriginal from '../LinkToOriginal';
+import { Link } from 'react-router';
 
-var truncate = require('html-truncate');
-var striptags = require('striptags');
+import truncate from 'html-truncate';
+import striptags from 'striptags';
 
 var Article = React.createClass({
   shortContent() {
@@ -31,4 +31,4 @@ var Article = React.createClass({
   }
 });
 
-module.exports = Article;
+export default Article;

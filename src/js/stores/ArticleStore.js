@@ -1,12 +1,12 @@
-var Reflux = require('reflux');
-var { into, filter, compose, map, take } = require('transducers.js');
+import Reflux from 'reflux';
+import { into, filter, compose, map, take } from 'transducers.js';
 
-var constants = require('../constants');
+import constants from '../constants';
 
-var FirebaseStore = require('./FirebaseStore');
-var FirebaseActions = require('../actions/FirebaseActions');
-var NotificationActions = require('../actions/NotificationActions');
-var ArticleActions = require('../actions/ArticleActions');
+import FirebaseStore from './FirebaseStore';
+import FirebaseActions from '../actions/FirebaseActions';
+import NotificationActions from '../actions/NotificationActions';
+import ArticleActions from '../actions/ArticleActions';
 
 var ArticleStore = Reflux.createStore({
   listenables: ArticleActions,
@@ -47,4 +47,4 @@ var ArticleStore = Reflux.createStore({
   }
 });
 
-module.exports = ArticleStore;
+export default ArticleStore;

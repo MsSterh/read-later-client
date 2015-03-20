@@ -1,5 +1,5 @@
-var Reflux = require('reflux');
-var FilterActions = require('../actions/FilterActions');
+import Reflux from 'reflux';
+import FilterActions from '../actions/FilterActions';
 
 var FilterStore = Reflux.createStore({
   listenables: FilterActions,
@@ -26,4 +26,4 @@ var FilterStore = Reflux.createStore({
   }
 });
 
-module.exports = FilterStore;
+export default FilterStore;

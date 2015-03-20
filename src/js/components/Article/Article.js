@@ -1,6 +1,6 @@
-var React = require('react');
-var Highlight = require('react-highlight');
-var LinkToOriginal = require('../LinkToOriginal');
+import React from 'react';
+import Highlight from 'react-highlight';
+import LinkToOriginal from '../LinkToOriginal';
 
 var Article = React.createClass({
   render() {
@@ -19,4 +19,4 @@ var Article = React.createClass({
   }
 });
 
-module.exports = Article;
+export default Article;

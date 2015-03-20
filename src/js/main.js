@@ -1,6 +1,6 @@
-require('highlight.js/styles/railscasts.css');
-require('../styles/main.css');
-require('../styles/normalize.min.css');
+import 'highlight.js/styles/railscasts.css';
+import '../styles/main.css';
+import '../styles/normalize.min.css';
 
 var React = require('react');
 var Router = require('react-router');

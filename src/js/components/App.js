@@ -1,7 +1,7 @@
-var React = require('react');
-var Router = require('react-router');
-var Notification = require('./Notification');
-var Footer = require('./Footer/Index');
+import React from 'react';
+import Router from 'react-router';
+import Notification from './Notification';
+import Footer from './Footer/Index';
 
 var RouteHandler = Router.RouteHandler;
 
@@ -17,4 +17,4 @@ var App = React.createClass({
   }
 });
 
-module.exports = App;
+export default App;

@@ -1,8 +1,8 @@
-var React = require('react');
-var Reflux = require('reflux');
+import React from 'react';
+import Reflux from 'reflux';
 
-var FilterStore = require('../../stores/FilterStore');
-var FilterActions = require('../../actions/FilterActions');
+import FilterStore from '../../stores/FilterStore';
+import FilterActions from '../../actions/FilterActions';
 
 var UnreadFilter = React.createClass({
   mixins: [Reflux.connect(FilterStore)],
@@ -27,4 +27,4 @@ var UnreadFilter = React.createClass({
   }
 });
 
-module.exports = UnreadFilter;
+export default UnreadFilter;

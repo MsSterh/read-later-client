@@ -1,8 +1,8 @@
-var React = require('react');
-var Link = require('react-router').Link;
+import React from 'react';
+import { Link } from 'react-router';
 
-var AddArticleForm = require('./AddArticleForm');
-var ArticleActions = require('../../actions/ArticlesActions');
+import AddArticleForm from './AddArticleForm';
+import ArticleActions from '../../actions/ArticlesActions';
 
 var Header = React.createClass({
   addArticle(url) {
@@ -24,4 +24,4 @@ var Header = React.createClass({
   }
 });
 
-module.exports = Header;
+export default Header;

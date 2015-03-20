@@ -1,12 +1,12 @@
-var React = require('react');
-var Reflux = require('reflux');
-var { into, map } = require('transducers.js');
+import React from 'react';
+import Reflux from 'reflux';
+import { into, map } from 'transducers.js';
 
-var ArticlesStore = require('../../stores/ArticlesStore');
-var Article = require('./Article');
-var UnreadFilter = require('./UnreadFilter');
-var Search = require('./Search');
-var Header = require('../Header/Index');
+import ArticlesStore from '../../stores/ArticlesStore';
+import Article from './Article';
+import UnreadFilter from './UnreadFilter';
+import Search from './Search';
+import Header from '../Header/Index';
 
 var ArticlesList = React.createClass({
   mixins: [Reflux.connect(ArticlesStore, 'articles')],
@@ -39,4 +39,4 @@ var ArticlesList = React.createClass({
   }
 });
 
-module.exports = ArticlesList;
+export default ArticlesList;

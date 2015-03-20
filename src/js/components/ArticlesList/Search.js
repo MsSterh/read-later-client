@@ -1,9 +1,9 @@
-var React = require('react');
-var Reflux = require('reflux');
-var debounce = require('lodash').debounce;
+import React from 'react';
+import Reflux from 'reflux';
+import {debounce } from 'lodash';
 
-var FilterActions = require('../../actions/FilterActions');
-var FilterStore = require('../../stores/FilterStore');
+import FilterActions from '../../actions/FilterActions';
+import FilterStore from '../../stores/FilterStore';
 
 var Search = React.createClass({
   mixins: [Reflux.connect(FilterStore)],
@@ -26,10 +26,14 @@ var Search = React.createClass({
   render() {
     return (
       <div className='search'>
-        <input type='search' placeholder='Search' value={this.state.search} ref='search' onChange={this.onChangeHandler} />
+        <input type='search'
+          placeholder='Search'
+          value={this.state.search}
+          ref='search'
+          onChange={this.onChangeHandler} />
       </div>
     );
   }
 });
 
-module.exports = Search;
+export default Search;

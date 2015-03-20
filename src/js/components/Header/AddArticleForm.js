@@ -1,4 +1,4 @@
-var React = require('react');
+import React from 'react';
 
 var AddArticleForm = React.createClass({
   onSubmitHandler(e) {
@@ -20,4 +20,4 @@ var AddArticleForm = React.createClass({
   }
 });
 
-module.exports = AddArticleForm;
+export default AddArticleForm;

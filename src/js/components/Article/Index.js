@@ -1,12 +1,12 @@
-var React = require('react');
-var Reflux = require('reflux');
-var Router = require('react-router');
+import React from 'react';
+import Reflux from 'reflux';
+import Router from 'react-router';
 
-var Header = require('../Header/Index');
-var Article = require('./Article');
+import Header from '../Header/Index';
+import Article from './Article';
 
-var ArticleStore = require('../../stores/ArticleStore');
-var ArticleActions = require('../../actions/ArticleActions');
+import ArticleStore from '../../stores/ArticleStore';
+import ArticleActions from '../../actions/ArticleActions';
 
 var ArticleComponent = React.createClass({
   mixins: [
@@ -57,4 +57,4 @@ var ArticleComponent = React.createClass({
   }
 });
 
-module.exports = ArticleComponent;
+export default ArticleComponent;

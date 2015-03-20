@@ -1,5 +1,5 @@
-var React = require('react');
-var Bookmarklet = require('./Bookmarklet');
+import React from 'react';
+import Bookmarklet from './Bookmarklet';
 
 var Footer = React.createClass({
   render() {
@@ -13,4 +13,4 @@ var Footer = React.createClass({
   }
 });
 
-module.exports = Footer;
+export default Footer;

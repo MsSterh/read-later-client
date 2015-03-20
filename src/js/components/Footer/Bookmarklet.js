@@ -1,5 +1,5 @@
-var React = require('react');
-var source = require('./bookmarklet.txt');
+import React from 'react';
+import source from './bookmarklet.txt';
 
 var Bookmarklet = React.createClass({
   render() {
@@ -9,4 +9,4 @@ var Bookmarklet = React.createClass({
   }
 });
 
-module.exports = Bookmarklet;
+export default Bookmarklet;

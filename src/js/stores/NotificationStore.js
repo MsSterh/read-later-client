@@ -1,5 +1,5 @@
-var Reflux = require('reflux');
-var NotificationActions = require('../actions/NotificationActions');
+import Reflux from 'reflux';
+import NotificationActions from '../actions/NotificationActions';
 
 var DURATION = 3000;
 
@@ -36,4 +36,4 @@ var NotificationStore = Reflux.createStore({
   }
 });
 
-module.exports = NotificationStore;
+export default NotificationStore;

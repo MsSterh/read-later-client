@@ -1,8 +1,8 @@
-var Firebase = require('firebase');
-var Reflux = require('reflux');
+import Firebase from 'firebase';
+import Reflux from 'reflux';
 
-var constants = require('../constants');
-var FirebaseActions = require('../actions/FirebaseActions');
+import constants from '../constants';
+import FirebaseActions from '../actions/FirebaseActions';
 
 var articlesRef = new Firebase(constants.FIREBASE_APP_URL).child('articles');
 
@@ -26,4 +26,4 @@ var FirebaseStore = Reflux.createStore({
   }
 });
 
-module.exports = FirebaseStore;
+export default FirebaseStore;

@@ -1,15 +1,16 @@
-var Reflux = require('reflux');
-var { seq, filter, compose } = require('transducers.js');
-require('whatwg-fetch');
+import 'whatwg-fetch';    // stupid globals
 
-var constants = require('../constants');
+import Reflux from 'reflux';
+import { seq, filter, compose } from 'transducers.js';
 
-var FilterStore = require('./FilterStore');
-var FirebaseStore = require('./FirebaseStore');
+import constants from '../constants';
 
-var ArticlesActions = require('../actions/ArticlesActions');
-var FirebaseActions = require('../actions/FirebaseActions');
-var NotificationActions = require('../actions/NotificationActions');
+import FilterStore from './FilterStore';
+import FirebaseStore from './FirebaseStore';
+
+import ArticlesActions from '../actions/ArticlesActions';
+import FirebaseActions from '../actions/FirebaseActions';
+import NotificationActions from '../actions/NotificationActions';
 
 var ArticlesStore = Reflux.createStore({
   listenables: ArticlesActions,
@@ -66,4 +67,4 @@ var ArticlesStore = Reflux.createStore({
   }
 });
 
-module.exports = ArticlesStore;
+export default ArticlesStore;
