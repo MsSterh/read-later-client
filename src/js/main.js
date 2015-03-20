@@ -23,3 +23,5 @@ var routes = (
 Router.run(routes, Router.HistoryLocation, Handler => {
   React.render(<Handler />, document.getElementById('app'));
 });
+
+window.React = React;
