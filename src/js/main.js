@@ -2,15 +2,12 @@ import 'highlight.js/styles/railscasts.css';
 import '../styles/main.css';
 import '../styles/normalize.min.css';
 
-var React = require('react');
-var Router = require('react-router');
+import React from 'react';
+import { run, HistoryLocation, Route, DefaultRoute } from 'react-router';
 
-var App = require('./components/App');
-var ArticlesList = require('./components/ArticlesList/Index');
-var Article = require('./components/Article/Index');
-
-var Route = Router.Route;
-var DefaultRoute = Router.DefaultRoute;
+import App from './components/App';
+import ArticlesList from './components/ArticlesList/Index';
+import Article from './components/Article/Index';
 
 var routes = (
   <Route name="app" path="/" handler={App} >
@@ -20,7 +17,7 @@ var routes = (
   </Route>
 );
 
-Router.run(routes, Router.HistoryLocation, Handler => {
+run(routes, HistoryLocation, Handler => {
   React.render(<Handler />, document.getElementById('app'));
 });
 
