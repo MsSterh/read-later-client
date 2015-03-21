@@ -7,7 +7,7 @@
     "build": "./node_modules/.bin/webpack --config webpack.config.min.js",
     "watch": "./node_modules/.bin/webpack --watch",
     "postinstall": "npm run build",
-    "start": "node .bin/www",
+    "start": "node ./bin/www",
     "test": "./node_modules/.bin/jest"
   },
   "author": "dra1n",
