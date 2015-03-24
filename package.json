@@ -13,7 +13,9 @@
   "author": "dra1n",
   "license": "ISC",
   "devDependencies": {
-    "jest-cli": "^0.4.0"
+    "jest-cli": "^0.4.0",
+    "mockfirebase": "^0.10.3",
+    "object-assign": "^2.0.0"
   },
   "dependencies": {
     "babel-core": "^4.7.8",
@@ -46,7 +48,10 @@
     "scriptPreprocessor": "<rootDir>/jestPreprocessor",
     "unmockedModulePathPatterns": [
       "<rootDir>/node_modules/react",
-      "<rootDir>/node_modules/react-tools"
+      "<rootDir>/node_modules/react-tools",
+      "<rootDir>/node_modules/reflux",
+      "<rootDir>/node_modules/mockfirebase",
+      "<rootDir>/node_modules/object-assign"
     ],
     "modulePathIgnorePatterns": []
   }

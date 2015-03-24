@@ -17,15 +17,15 @@ describe('Article', () => {
     var component = TestUtils.renderIntoDocument(
       <Article article={data} />
     );
-    console.log(component.getDOMNode().innerHTML)
-    article = TestUtils.findRenderedDOMComponentWithTag(component, 'article');
-  });
 
-  it('renders into article tag', () => {
-    expect(article).toBeDefined();
+    article = TestUtils.findRenderedDOMComponentWithTag(component, 'article');
   });
 
   it('contains article title', () => {
     expect(article.getDOMNode().textContent).toContain('Backend Apps with Webpack');
+  });
+
+  it('contains article content', () => {
+    expect(article.getDOMNode().textContent).toContain('Webpack is an amazing tool. It calls itself a "module bundler"');
   });
 });

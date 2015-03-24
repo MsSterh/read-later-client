@@ -43,8 +43,8 @@ var ArticleComponent = React.createClass({
     return (
       <div>
         <Header>
-          <a href="#" onClick={this.removeArticle}>Remove</a>
-          <a href="#" onClick={this.changeReadState}>{readState}</a>
+          <a className='remove' href='#' onClick={this.removeArticle}>Remove</a>
+          <a className='change-state' href='#' onClick={this.changeReadState}>{readState}</a>
         </Header>
 
         <div className='main-container'>
