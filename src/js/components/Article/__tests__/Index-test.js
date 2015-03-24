@@ -5,7 +5,7 @@ jest.dontMock('../../../utils/test');
 
 import React from 'react/addons';
 
-import ArticleIndex from '../Index';
+import IndexComponent from '../Index';
 import Article from '../Article';
 import Header from '../../Header/Index';
 import { makeStubbedDescriptor } from '../../../utils/test';
@@ -29,7 +29,7 @@ describe('Index', () => {
       return articleData;
     });
 
-    var ArticleStubbed = makeStubbedDescriptor(ArticleIndex, {}, {
+    var ArticleStubbed = makeStubbedDescriptor(IndexComponent, {}, {
       getCurrentParams() {
         return { id: 'sometestid' }
       }
