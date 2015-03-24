@@ -1,6 +1,6 @@
 import React from 'react';
 import Reflux from 'reflux';
-import {debounce } from 'lodash';
+import { debounce } from 'lodash';
 
 import FilterActions from '../../actions/FilterActions';
 import FilterStore from '../../stores/FilterStore';
@@ -18,8 +18,8 @@ var Search = React.createClass({
     }, 500);
   },
 
-  onChangeHandler() {
-    this.setState({ search: this.refs.search.getDOMNode().value });
+  onChangeHandler(e) {
+    this.setState({ search: e.target.value });
     this.handleSearchDebounced();
   },
 
@@ -29,7 +29,6 @@ var Search = React.createClass({
         <input type='search'
           placeholder='Search'
           value={this.state.search}
-          ref='search'
           onChange={this.onChangeHandler} />
       </div>
     );
