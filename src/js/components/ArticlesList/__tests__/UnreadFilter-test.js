@@ -1,11 +1,9 @@
 jest.dontMock('../UnreadFilter');
-jest.dontMock('../../../utils/test');
 
 import React from 'react/addons';
 
 import UnreadFilterComponent from '../UnreadFilter';
 import FilterActions from '../../../actions/FilterActions';
-import { makeStubbedDescriptor } from '../../../utils/test';
 
 const TestUtils = React.addons.TestUtils;
 
