@@ -16,15 +16,15 @@ import ArticleStore from '../../../stores/ArticleStore';
 const TestUtils = React.addons.TestUtils;
 
 describe('Index', () => {
-  var Index, articleData;
+  var Index,
+
+  articleData = {
+    title: 'Backend Apps with Webpack',
+    url: 'http://jlongster.com/Backend-Apps-with-Webpack--Part-I',
+    content: 'Webpack is an amazing tool. It calls itself a "module bundler"'
+  };
 
   beforeEach(() => {
-    articleData = {
-      title: 'Backend Apps with Webpack',
-      url: 'http://jlongster.com/Backend-Apps-with-Webpack--Part-I',
-      content: 'Webpack is an amazing tool. It calls itself a "module bundler"'
-    };
-
     ArticleStore.getArticle = jest.genMockFunction().mockImplementation(() => {
       return articleData;
     });
