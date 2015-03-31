@@ -16,7 +16,7 @@ var FilterStore = Reflux.createStore({
     this.trigger(this._filters);
   },
 
-  onSwitchDisplayFilter(unreadOnly) {
+  onSwitchDisplayFilter() {
     this._filters.unreadOnly = !this._filters.unreadOnly;
     this.trigger(this._filters);
   },

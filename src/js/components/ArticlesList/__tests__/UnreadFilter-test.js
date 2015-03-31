@@ -42,6 +42,6 @@ describe('UnreadFilter', () => {
     });
 
     TestUtils.Simulate.click(link.getDOMNode());
-    expect(FilterActions.switchDisplayFilter).toBeCalledWith(true);
+    expect(FilterActions.switchDisplayFilter).toBeCalled();
   });
 });

@@ -13,7 +13,7 @@ var UnreadFilter = React.createClass({
 
   switchDisplayFilter(e) {
     e.preventDefault();
-    FilterActions.switchDisplayFilter(this.state.unreadOnly);
+    FilterActions.switchDisplayFilter();
   },
 
   render() {
