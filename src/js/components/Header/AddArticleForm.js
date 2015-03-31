@@ -12,7 +12,7 @@ var AddArticleForm = React.createClass({
     return (
       <div className='add_url'>
         <form onSubmit={this.onSubmitHandler}>
-          <input type='text' placeholder='http://...' ref='url' />
+          <input className='add-url' type='text' placeholder='http://...' ref='url' />
           <input type='submit' value='+ ADD URL' />
         </form>
       </div>
