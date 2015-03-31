@@ -6,8 +6,7 @@ import AddArticleFormComponent from '../AddArticleForm';
 const TestUtils = React.addons.TestUtils;
 
 describe('AddArticleForm', () => {
-  var AddArticleForm,
-    onSubmitHandler;
+  var AddArticleForm, onSubmitHandler;
 
   beforeEach(() => {
     onSubmitHandler = jest.genMockFunction();
@@ -15,12 +14,19 @@ describe('AddArticleForm', () => {
   });
 
   describe('submit', () => {
+    beforeEach(function() {
+      var form = TestUtils.findRenderedDOMComponentWithTag(AddArticleForm, 'form');
+
+      AddArticleForm.refs.url.getDOMNode().value = 'clojure';
+      TestUtils.Simulate.submit(form);
+    });
+
     it('calls onSubmitHandler', () => {
-      var urlInput = AddArticleForm.refs.url.getDOMNode();
-      React.addons.TestUtils.Simulate.change(urlInput, {target: {value: 'clojure'}});
+      expect(onSubmitHandler).toBeCalledWith('clojure');
     });
 
     it('clears input field', () => {
+      expect(AddArticleForm.refs.url.getDOMNode().value).toEqual('');
     });
   });
 });
