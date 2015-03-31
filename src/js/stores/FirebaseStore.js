@@ -4,7 +4,8 @@ import Reflux from 'reflux';
 import constants from '../constants';
 import FirebaseActions from '../actions/FirebaseActions';
 
-var articlesRef = new Firebase(constants.FIREBASE_APP_URL).child('articles');
+var fireRef = new Firebase(constants.FIREBASE_APP_URL);
+var articlesRef = fireRef.child('articles');
 
 var FirebaseStore = Reflux.createStore({
   listenables: FirebaseActions,
