@@ -6,33 +6,38 @@ var DURATION = 3000;
 var NotificationStore = Reflux.createStore({
   listenables: NotificationActions,
 
+  init() {
+    this._notification = {
+      active: false,
+      text: '',
+      type: ''
+    }
+  },
+
   onCreate(type, text) {
     if (arguments.length === 1) {
       text = type;
       type = 'notice';
     }
 
-    this.trigger({
+    this._notification = {
       active: true,
       type: type,
       text: text
-    });
+    };
+
+    this.trigger(this._notification);
 
     setTimeout(NotificationActions.destroy, DURATION);
   },
 
   onDestroy() {
-    this.trigger({
-      active: false
-    });
+    this._notification.active = false;
+    this.trigger(this._notification);
   },
 
-  getDefaultState() {
-    return {
-      active: false,
-      text: '',
-      type: ''
-    }
+  getNotification() {
+    return this._notification;
   }
 });
 

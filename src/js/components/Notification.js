@@ -9,7 +9,7 @@ var Notification = React.createClass({
   mixins: [Reflux.connect(NotificationStore)],
 
   getInitialState() {
-    return NotificationStore.getDefaultState()
+    return NotificationStore.getNotification()
   },
 
   render() {

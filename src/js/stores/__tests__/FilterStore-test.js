@@ -5,7 +5,7 @@ import FilterStore from '../FilterStore';
 import FilterActions from '../../actions/FilterActions';
 
 describe('FilterStore', () => {
-  it('initializes with empty filter values', function() {
+  it('is initialized with empty filter values', function() {
     expect(FilterStore.getFilters()).toEqual({
       unreadOnly: true,
       search: ''
@@ -17,6 +17,15 @@ describe('FilterStore', () => {
       FilterActions.search('clojure');
       jest.runOnlyPendingTimers();
       expect(FilterStore.getFilters().search).toEqual('clojure');
+    });
+
+    it('triggers with changes', () => {
+      var listener = jest.genMockFunction();
+      FilterStore.listen(listener);
+      FilterActions.search('clojure');
+      jest.runOnlyPendingTimers();
+
+      expect(listener.mock.calls[0][0].search).toEqual('clojure');
     });
   });
 
@@ -33,6 +42,17 @@ describe('FilterStore', () => {
       FilterActions.switchDisplayFilter();
       jest.runOnlyPendingTimers();
       expect(FilterStore.getFilters().unreadOnly).toEqual(false);
+    });
+
+    it('triggers with changes', () => {
+      var listener = jest.genMockFunction();
+      FilterStore._filters.unreadOnly = true;
+      FilterStore.listen(listener);
+
+      FilterActions.switchDisplayFilter();
+      jest.runOnlyPendingTimers();
+
+      expect(listener.mock.calls[0][0].unreadOnly).toEqual(false);
     });
   });
 });
