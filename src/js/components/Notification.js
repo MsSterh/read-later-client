@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react/addons';
 import Reflux from 'reflux';
 
 import NotificationStore from '../stores/NotificationStore';
