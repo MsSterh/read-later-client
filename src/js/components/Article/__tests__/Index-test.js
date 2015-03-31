@@ -25,9 +25,7 @@ describe('Index', () => {
   };
 
   beforeEach(() => {
-    ArticleStore.getArticle = jest.genMockFunction().mockImplementation(() => {
-      return articleData;
-    });
+    ArticleStore.getArticle = jest.genMockFunction().mockReturnValue(articleData);
 
     var ArticleStubbed = makeStubbedDescriptor(IndexComponent, {}, {
       getCurrentParams() {

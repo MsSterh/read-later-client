@@ -25,8 +25,8 @@ describe('Index', () => {
   }
 
   beforeEach(() => {
-    ArticlesStore.getArticles.mockImplementation(() => articlesData)
-    var IndexStubbed = makeStubbedDescriptor(IndexComponent)
+    ArticlesStore.getArticles.mockReturnValue(articlesData);
+    var IndexStubbed = makeStubbedDescriptor(IndexComponent);
     Index = TestUtils.renderIntoDocument(<IndexStubbed />);
     Index.setState({
       articles: articlesData
