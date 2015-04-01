@@ -27,7 +27,7 @@ describe('FirebaseStore', () => {
 
   describe('init', () => {
     it('subscribes to changes in Firebase', () => {
-      spyOn(FirebaseActions, 'receiveData').andCallThrough();
+      spyOn(FirebaseActions, 'receiveData');
       FirebaseStore.init();
 
       articlesRef.push('stuff');
