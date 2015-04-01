@@ -1,9 +1,15 @@
-var MockFirebase = require('mockfirebase').MockFirebase;
+import { MockFirebase } from 'mockfirebase';
 
 var FirebaseStub = function(url) {
-  fireRef = new MockFirebase(url)
-  fireRef.autoFlush();
-  return fireRef;
+  FirebaseStub._singletonInstance = FirebaseStub._singletonInstance || {};
+
+  if (!FirebaseStub._singletonInstance[url]) {
+    fireRef = new MockFirebase(url);
+    fireRef.autoFlush();
+    FirebaseStub._singletonInstance[url] = fireRef;
+  }
+
+  return FirebaseStub._singletonInstance[url];
 }
 
-module.exports = FirebaseStub;
+export default FirebaseStub;
