@@ -8,9 +8,11 @@ import FirebaseStore from '../FirebaseStore';
 import FirebaseActions from '../../actions/FirebaseActions';
 
 describe('FirebaseStore', () => {
-  var snapshotMock, listener;
+  var snapshotMock, listener, articlesRef;
 
   beforeEach(() => {
+    var fireRef = new Firebase(constants.FIREBASE_APP_URL);
+
     snapshotMock = {
       val() {
         return {
@@ -18,17 +20,13 @@ describe('FirebaseStore', () => {
         }
       }
     }
-  });
 
-  beforeEach(() => {
     listener = jest.genMockFunction();
+    articlesRef = fireRef.child('articles');
   });
 
   describe('init', () => {
     it('subscribes to changes in Firebase', () => {
-      var fireRef = new Firebase(constants.FIREBASE_APP_URL);
-      var articlesRef = fireRef.child('articles');
-
       spyOn(FirebaseActions, 'receiveData').andCallThrough();
       FirebaseStore.init();
 
@@ -48,12 +46,37 @@ describe('FirebaseStore', () => {
   });
 
   describe('removeItem', () => {
-    it('triggers with new state', () => {
+    it('removes data from firebase', () => {
+      var id;
+      var article = { content: 'test content' };
+
+      articlesRef.push(article);
+      id = articlesRef._lastAutoId;
+
+      expect(articlesRef.getData()[id]).toEqual(article);
+
+      FirebaseActions.removeItem(id);
+      jest.runOnlyPendingTimers();
+
+      expect(articlesRef.getData()[id]).toEqual(undefined);
     });
   });
 
   describe('updateItem', () => {
-    it('triggers with new state', () => {
+    it('updates data in firebase', () => {
+      var id;
+      var article = { content: 'test content' },
+      newArticle = { content: 'new test content' };
+
+      articlesRef.push(article);
+      id = articlesRef._lastAutoId;
+
+      expect(articlesRef.getData()[id]).toEqual(article);
+
+      FirebaseActions.updateItem(id, newArticle);
+      jest.runOnlyPendingTimers();
+
+      expect(articlesRef.getData()[id]).toEqual(newArticle);
     });
   });
 });
