@@ -8,7 +8,9 @@ module.exports = {
   },
   module: {
     loaders: [
-      { test: /\.css/, loader: "style!css" },
+      { test: /\.css/, loader: "style!css?root=." },
+      { test: /\.jpg/, loader: "url?limit=1000&mimetype=image/jpg" },
+      { test: /\.png/, loader: "url?limit=1000&mimetype=image/png" },
       { test: /\.txt/, loader: "raw" },
       { test: /config\.js$/, loader: "envify" },
       { test: /\.json$/, loader: 'json' },

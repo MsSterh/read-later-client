@@ -3,6 +3,7 @@ import { Link } from 'react-router';
 
 import AddArticleForm from './AddArticleForm';
 import ArticleActions from '../../actions/ArticlesActions';
+import LogoImg from '../../../images/logo.png';
 
 var Header = React.createClass({
   addArticle(url) {
@@ -11,15 +12,15 @@ var Header = React.createClass({
 
   render() {
     return (
-      <div className='header-container'>
-        <header>
+      <header className='header'>
+        <div className='container'>
           <h1>
-            <Link to="app">Read Now</Link>
+            <Link to="app"><img src={LogoImg} /></Link>
           </h1>
           <AddArticleForm onSubmitHandler={this.addArticle} />
           {this.props.children}
-        </header>
-      </div>
+        </div>
+      </header>
     );
   }
 });

@@ -4,11 +4,13 @@ import Bookmarklet from './Bookmarklet';
 var Footer = React.createClass({
   render() {
     return (
-      <div className='footer-container'>
-        <footer>
-          Bookmarklet <Bookmarklet />
-        </footer>
-      </div>
+      <footer>
+	    <div className='container'>
+          <span>Bookmarklet</span>
+          <Bookmarklet />
+          <p>Use bookmarklet for easy way to add you reading. Just add it to your toolbar and click on it when you will be on reading page!</p>
+        </div>
+      </footer>
     );
   }
 });

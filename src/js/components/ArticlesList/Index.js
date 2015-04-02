@@ -29,8 +29,8 @@ var ArticlesList = React.createClass({
           <UnreadFilter />
         </Header>
 
-        <div className='main-container'>
-          <div className='main'>
+        <div className='main'>
+          <div className='articles_list'>
             {articleNodes}
           </div>
         </div>
