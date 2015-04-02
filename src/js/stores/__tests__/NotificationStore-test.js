@@ -1,6 +1,8 @@
+jest.dontMock('./helpers');
 jest.dontMock('../NotificationStore');
 jest.dontMock('../../actions/NotificationActions');
 
+import { invokeSync } from './helpers';
 import NotificationStore from '../NotificationStore';
 import NotificationActions from '../../actions/NotificationActions';
 
@@ -15,8 +17,7 @@ describe('NotificationStore', () => {
 
   describe('create', () => {
     it('changes notification state', () => {
-      NotificationActions.create('warning', 'ho hey');
-      jest.runOnlyPendingTimers();
+      invokeSync(() => NotificationActions.create('warning', 'ho hey'));
 
       expect(NotificationStore.getNotification()).toEqual({
         active: true,
@@ -29,9 +30,7 @@ describe('NotificationStore', () => {
       var listener = jest.genMockFunction();
 
       NotificationStore.listen(listener);
-
-      NotificationActions.create('warning', 'ho hey');
-      jest.runOnlyPendingTimers();
+      invokeSync(() => NotificationActions.create('warning', 'ho hey'));
 
       expect(listener.mock.calls[0][0]).toEqual({
         active: true,
@@ -41,8 +40,7 @@ describe('NotificationStore', () => {
     });
 
     it('uses "notice" as notification default type', () => {
-      NotificationActions.create('ho hey');
-      jest.runOnlyPendingTimers();
+      invokeSync(() => NotificationActions.create('ho hey'));
 
       expect(NotificationStore.getNotification()).toEqual({
         active: true,
@@ -52,9 +50,7 @@ describe('NotificationStore', () => {
     });
 
     it('schedules destroy after 3 seconds', () => {
-      NotificationActions.create('ho hey');
-      jest.runOnlyPendingTimers();
-
+      invokeSync(() => NotificationActions.create('ho hey'));
       expect(setTimeout).toBeCalledWith(NotificationActions.destroy, 3000);
     });
   });
@@ -69,9 +65,7 @@ describe('NotificationStore', () => {
     });
 
     it('changes notification state', () => {
-      NotificationActions.destroy();
-      jest.runOnlyPendingTimers();
-
+      invokeSync(() => NotificationActions.destroy());
       expect(NotificationStore.getNotification().active).toEqual(false);
     });
 
@@ -79,8 +73,7 @@ describe('NotificationStore', () => {
       var listener = jest.genMockFunction();
 
       NotificationStore.listen(listener);
-      NotificationActions.destroy();
-      jest.runOnlyPendingTimers();
+      invokeSync(() => NotificationActions.destroy());
 
       expect(listener.mock.calls[0][0].active).toEqual(false);
     });

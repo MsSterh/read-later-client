@@ -1,6 +1,9 @@
+jest.dontMock('./helpers');
 jest.dontMock('../FirebaseStore');
 jest.dontMock('../../constants');
 jest.dontMock('../../actions/FirebaseActions');
+
+import { invokeSync } from './helpers';
 
 import Firebase from 'firebase';
 import constants from '../../constants';
@@ -38,9 +41,7 @@ describe('FirebaseStore', () => {
   describe('receiveData', () => {
     it('triggers with new state', () => {
       FirebaseStore.listen(listener);
-      FirebaseActions.receiveData(snapshotMock);
-      jest.runOnlyPendingTimers();
-
+      invokeSync(() => FirebaseActions.receiveData(snapshotMock));
       expect(listener).toBeCalledWith({ content: 'test content' });
     });
   });
@@ -54,10 +55,7 @@ describe('FirebaseStore', () => {
       id = articlesRef._lastAutoId;
 
       expect(articlesRef.getData()[id]).toEqual(article);
-
-      FirebaseActions.removeItem(id);
-      jest.runOnlyPendingTimers();
-
+      invokeSync(() => FirebaseActions.removeItem(id));
       expect(articlesRef.getData()[id]).toEqual(undefined);
     });
   });
@@ -72,10 +70,7 @@ describe('FirebaseStore', () => {
       id = articlesRef._lastAutoId;
 
       expect(articlesRef.getData()[id]).toEqual(article);
-
-      FirebaseActions.updateItem(id, newArticle);
-      jest.runOnlyPendingTimers();
-
+      invokeSync(() => FirebaseActions.updateItem(id, newArticle));
       expect(articlesRef.getData()[id]).toEqual(newArticle);
     });
   });
