@@ -1,6 +1,6 @@
 jest.dontMock('./helpers');
 jest.dontMock('../FirebaseStore');
-jest.dontMock('../../constants');
+//jest.dontMock('../../constants');
 jest.dontMock('../../actions/FirebaseActions');
 
 import { invokeSync } from './helpers';
