@@ -1,6 +1,9 @@
+jest.dontMock('./helpers');
 jest.dontMock('../ArticleStore');
 jest.dontMock('../FirebaseStore');
 jest.dontMock('../../actions/ArticleActions');
+
+import { invokeSync } from './helpers';
 
 import ArticleStore from '../ArticleStore';
 import FirebaseStore from '../FirebaseStore';
@@ -17,9 +20,10 @@ describe('ArticleStore', () => {
     it('subscribes to changes in Firebase store', () => {
       spyOn(ArticleActions, 'receiveArticle');
 
-      ArticleStore.init();
-      FirebaseStore.trigger({ 'some':  'article' });
-      jest.runOnlyPendingTimers();
+      invokeSync(() => {
+        ArticleStore.init();
+        FirebaseStore.trigger({ 'some':  'article' });
+      });
 
       expect(ArticleActions.receiveArticle).toHaveBeenCalledWith({ 'some':  'article' });
     });
@@ -31,14 +35,12 @@ describe('ArticleStore', () => {
 
   describe('receiveArticle', () => {
     it('updates article collection', () => {
-      ArticleActions.receiveArticle({ 'some': 'article' });
-      jest.runOnlyPendingTimers();
+      invokeSync(() => ArticleActions.receiveArticle({ 'some': 'article' }));
       expect(ArticleStore.articles).toEqual({ 'some': 'article' });
     });
 
     it('sets articles to empty object if was invoked with empty value', () => {
-      ArticleActions.receiveArticle();
-      jest.runOnlyPendingTimers();
+      invokeSync(() => ArticleActions.receiveArticle());
       expect(ArticleStore.articles).toEqual({});
     });
 
@@ -46,8 +48,7 @@ describe('ArticleStore', () => {
       var listener = jest.genMockFunction();
 
       ArticleStore.listen(listener);
-      ArticleActions.receiveArticle({ 'some': 'article' });
-      jest.runOnlyPendingTimers();
+      invokeSync(() => ArticleActions.receiveArticle({ 'some': 'article' }));
 
       expect(listener).toBeCalled();
     });
@@ -61,8 +62,7 @@ describe('ArticleStore', () => {
         transitionTo: jest.genMockFunction()
       };
 
-      ArticleActions.removeArticle('someId', componentMock);
-      jest.runOnlyPendingTimers();
+      invokeSync(() => ArticleActions.removeArticle('someId', componentMock));
     });
 
     it('invokes removeItem action', () => {
@@ -79,21 +79,52 @@ describe('ArticleStore', () => {
   });
 
   describe('changeReadState', () => {
-    it('reverses acticle read state', () => {
+    var articlesMock;
+
+    beforeEach(() => {
+      articlesMock = {
+        someId: {
+          read: false
+        }
+      };
+
+      ArticleStore.init();
+      invokeSync(() => ArticleActions.receiveArticle(articlesMock));
     });
 
     it('invokes updateItem action', () => {
+      spyOn(FirebaseActions, 'updateItem');
+      invokeSync(() => ArticleActions.changeReadState('someId'));
+      expect(FirebaseActions.updateItem).toHaveBeenCalledWith('someId', { 'read': true });
     });
 
     it('creates notification', () => {
+      spyOn(NotificationActions, 'create');
+      invokeSync(() => ArticleActions.changeReadState('someId'));
+      expect(NotificationActions.create).toHaveBeenCalled();
     });
   });
 
   describe('getArticle', () => {
-    it('searches article by id', () => {
+    var articlesMock;
+
+    beforeEach(() => {
+      articlesMock = {
+        someId: {
+          content: 'test content'
+        }
+      };
+
+      ArticleStore.init();
+      invokeSync(() => ArticleActions.receiveArticle(articlesMock));
     });
 
-    it('returns null if not finds one', () => {
+    it('searches article by id', () => {
+      expect(ArticleStore.getArticle('someId').content).toEqual('test content');
+    });
+
+    it('returns empty object if not finds one', () => {
+      expect(ArticleStore.getArticle('wrongId')).toEqual({});
     });
   });
 });
