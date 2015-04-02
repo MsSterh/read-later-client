@@ -106,7 +106,7 @@ describe('ArticlesStore', () => {
       headers: {
         'Content-type': 'application/x-www-form-urlencoded; charset=UTF-8'
       },
-      body: articleUrl
+      body: `url=${articleUrl}`
     };
 
     beforeEach(() => {

@@ -4,6 +4,7 @@ import Router from 'react-router';
 
 import Header from '../Header/Index';
 import Article from './Article';
+import Notification from '../Notification';
 
 import ArticleStore from '../../stores/ArticleStore';
 import ArticleActions from '../../actions/ArticleActions';
@@ -48,6 +49,8 @@ var ArticleComponent = React.createClass({
             <a className='change-state' href='#' onClick={this.changeReadState}>{readState}</a>
           </div>
         </Header>
+
+        <Notification />
 
         <div className='main'>
           <div className='article'>

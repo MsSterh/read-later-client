@@ -1,8 +1,10 @@
 jest.dontMock('../Index');
 jest.dontMock('../AddArticleForm');
 jest.dontMock('../../../utils/test');
+jest.dontMock('../../../../images/logo.png');
 
 import React from 'react/addons';
+import LogoImg from '../../../../images/logo.png'
 import HeaderComponent from '../Index';
 import ArticlesActions from '../../../actions/ArticlesActions';
 import { makeStubbedDescriptor } from '../../../utils/test';
@@ -19,7 +21,9 @@ describe('Header', () => {
 
   it('contains link to home page', () => {
     var linkToHome = TestUtils.findRenderedDOMComponentWithTag(Header, 'a');
-    expect(linkToHome.getDOMNode().textContent).toEqual('Read Now');
+    var logoEl = TestUtils.findRenderedDOMComponentWithTag(linkToHome, 'img');
+
+    expect(logoEl.getDOMNode().src).toEqual(LogoImg);
   });
 
   it('renders form for adding an url', () => {

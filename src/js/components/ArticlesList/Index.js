@@ -6,6 +6,7 @@ import ArticlesStore from '../../stores/ArticlesStore';
 import Article from './Article';
 import UnreadFilter from './UnreadFilter';
 import Search from './Search';
+import Notification from '../Notification';
 import Header from '../Header/Index';
 
 var ArticlesList = React.createClass({
@@ -28,6 +29,8 @@ var ArticlesList = React.createClass({
           <Search />
           <UnreadFilter />
         </Header>
+
+        <Notification />
 
         <div className='main'>
           <div className='articles_list'>
