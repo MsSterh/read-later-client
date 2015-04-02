@@ -1,4 +1,5 @@
 import React from 'react';
+import FancyInput from '../FancyInput';
 
 var AddArticleForm = React.createClass({
   onSubmitHandler(e) {
@@ -12,7 +13,9 @@ var AddArticleForm = React.createClass({
     return (
       <div className='add_url'>
         <form onSubmit={this.onSubmitHandler}>
-          <input className='add-url' type='text' placeholder='http://...' ref='url' />
+          <FancyInput className='add-url' label='http://...'>
+            <input type='text' />
+          </FancyInput>
         </form>
       </div>
     );

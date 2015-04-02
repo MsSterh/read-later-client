@@ -2,6 +2,7 @@ import React from 'react';
 import Reflux from 'reflux';
 import { debounce } from 'lodash';
 
+import FancyInput from '../FancyInput';
 import FilterActions from '../../actions/FilterActions';
 import FilterStore from '../../stores/FilterStore';
 
@@ -25,12 +26,11 @@ var Search = React.createClass({
 
   render() {
     return (
-      <div className='search'>
+      <FancyInput className='search' label='Search'>
         <input type='search'
-          placeholder='Search'
           value={this.state.search}
           onChange={this.onChangeHandler} />
-      </div>
+      </FancyInput>
     );
   }
 });
