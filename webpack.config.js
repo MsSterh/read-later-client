@@ -1,10 +1,10 @@
 module.exports = {
   entry: __dirname + "/src/js/main",
-  devtool: 'source-map',
+  devtool: "source-map",
   output: {
     path: __dirname + "/public",
     filename: "main.js",
-    publicPath: "./public/",
+    publicPath: "/public/",
   },
   module: {
     loaders: [
