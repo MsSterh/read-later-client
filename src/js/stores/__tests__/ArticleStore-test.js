@@ -1,9 +1,8 @@
-jest.dontMock('./helpers');
 jest.dontMock('../ArticleStore');
 jest.dontMock('../FirebaseStore');
 jest.dontMock('../../actions/ArticleActions');
 
-import { invokeSync } from './helpers';
+import { invokeSync } from '../../utils/test';
 
 import ArticleStore from '../ArticleStore';
 import FirebaseStore from '../FirebaseStore';

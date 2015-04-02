@@ -54,7 +54,8 @@
       "<rootDir>/node_modules/reflux",
       "<rootDir>/node_modules/mockfirebase",
       "<rootDir>/node_modules/transducers.js",
-      "<rootDir>/node_modules/object-assign"
+      "<rootDir>/node_modules/object-assign",
+      "<rootDir>/src/js/utils/test"
     ],
     "modulePathIgnorePatterns": []
   }

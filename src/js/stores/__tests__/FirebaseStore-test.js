@@ -1,12 +1,10 @@
-jest.dontMock('./helpers');
 jest.dontMock('../FirebaseStore');
-//jest.dontMock('../../constants');
 jest.dontMock('../../actions/FirebaseActions');
 
-import { invokeSync } from './helpers';
+import { invokeSync } from '../../utils/test';
 
 import Firebase from 'firebase';
-import constants from '../../constants';
+import { FIREBASE_APP_URL } from '../../constants';
 import FirebaseStore from '../FirebaseStore';
 import FirebaseActions from '../../actions/FirebaseActions';
 
@@ -14,7 +12,7 @@ describe('FirebaseStore', () => {
   var snapshotMock, listener, articlesRef;
 
   beforeEach(() => {
-    var fireRef = new Firebase(constants.FIREBASE_APP_URL);
+    var fireRef = new Firebase(FIREBASE_APP_URL);
 
     snapshotMock = {
       val() {

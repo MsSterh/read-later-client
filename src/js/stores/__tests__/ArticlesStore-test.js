@@ -1,10 +1,9 @@
-jest.dontMock('./helpers');
 jest.dontMock('../ArticlesStore');
 jest.dontMock('../FirebaseStore');
 jest.dontMock('../FilterStore');
 jest.dontMock('../../actions/ArticlesActions');
 
-import { invokeSync } from './helpers';
+import { invokeSync } from '../../utils/test';
 
 import 'whatwg-fetch';    // stupid globals
 import { READABILITY_APP_URL } from '../../constants';

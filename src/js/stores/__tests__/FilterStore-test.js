@@ -1,8 +1,7 @@
-jest.dontMock('./helpers');
 jest.dontMock('../FilterStore');
 jest.dontMock('../../actions/FilterActions');
 
-import { invokeSync } from './helpers';
+import { invokeSync } from '../../utils/test';
 import FilterStore from '../FilterStore';
 import FilterActions from '../../actions/FilterActions';
 

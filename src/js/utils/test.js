@@ -38,3 +38,8 @@ export function makeStubbedDescriptor(Component, props, stubs) {
     }
   });
 };
+
+export function invokeSync(fn) {
+  fn();
+  jest.runOnlyPendingTimers();
+}

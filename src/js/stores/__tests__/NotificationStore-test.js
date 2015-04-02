@@ -1,8 +1,8 @@
-jest.dontMock('./helpers');
 jest.dontMock('../NotificationStore');
 jest.dontMock('../../actions/NotificationActions');
 
-import { invokeSync } from './helpers';
+import { invokeSync } from '../../utils/test';
+
 import NotificationStore from '../NotificationStore';
 import NotificationActions from '../../actions/NotificationActions';
 
