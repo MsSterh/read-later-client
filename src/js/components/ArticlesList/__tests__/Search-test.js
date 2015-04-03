@@ -1,4 +1,5 @@
 jest.dontMock('../Search');
+jest.dontMock('../../FancyInput');
 jest.dontMock('../../../stores/FilterStore');
 
 import { debounce } from 'lodash';

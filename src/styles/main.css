@@ -173,8 +173,8 @@ footer > .container a {
   text-align: center;
   width: 100%;
 }
-.notification > div.error {
-  color: #f64358;  
+.notification.error > div {
+  color: #f64358;
 }
 
 @media only screen and (min-width: 480px) {

@@ -1,5 +1,6 @@
 jest.dontMock('../Index');
 jest.dontMock('../AddArticleForm');
+jest.dontMock('../../FancyInput');
 jest.dontMock('../../../utils/test');
 jest.dontMock('../../../../images/logo.png');
 
@@ -36,7 +37,7 @@ describe('Header', () => {
     var inputField = TestUtils.findRenderedDOMComponentWithClass(form, 'add-url');
 
     inputField.getDOMNode().value = url;
-    TestUtils.Simulate.submit(form);
+    TestUtils.Simulate.keyDown(inputField, { keyCode: 13 });
 
     expect(ArticlesActions.addArticle).toBeCalledWith(url);
   });

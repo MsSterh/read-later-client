@@ -1,3 +1,4 @@
+jest.dontMock('../../FancyInput');
 jest.dontMock('../AddArticleForm');
 
 import React from 'react/addons';
@@ -13,20 +14,24 @@ describe('AddArticleForm', () => {
     AddArticleForm = TestUtils.renderIntoDocument(<AddArticleFormComponent onSubmitHandler={onSubmitHandler} />);
   });
 
-  describe('submit', () => {
+  describe('keyPress', () => {
+    var url, inputField;
+
     beforeEach(function() {
       var form = TestUtils.findRenderedDOMComponentWithTag(AddArticleForm, 'form');
+      inputField = TestUtils.findRenderedDOMComponentWithClass(form, 'add-url');
+      url = 'http://example.com/example';
 
-      AddArticleForm.refs.url.getDOMNode().value = 'clojure';
-      TestUtils.Simulate.submit(form);
+      inputField.getDOMNode().value = url;
+      TestUtils.Simulate.keyDown(inputField, { keyCode: 13 });
     });
 
     it('calls onSubmitHandler', () => {
-      expect(onSubmitHandler).toBeCalledWith('clojure');
+      expect(onSubmitHandler).toBeCalledWith(url);
     });
 
     it('clears input field', () => {
-      expect(AddArticleForm.refs.url.getDOMNode().value).toEqual('');
+      expect(inputField.getDOMNode().value).toEqual('');
     });
   });
 });

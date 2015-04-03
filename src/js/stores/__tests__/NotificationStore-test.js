@@ -51,7 +51,7 @@ describe('NotificationStore', () => {
 
     it('schedules destroy after 3 seconds', () => {
       invokeSync(() => NotificationActions.create('ho hey'));
-      expect(setTimeout).toBeCalledWith(NotificationActions.destroy, 3000);
+      expect(setTimeout).toBeCalledWith(NotificationActions.destroy, 5000);
     });
   });
 

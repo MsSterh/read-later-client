@@ -1,7 +1,7 @@
 import Reflux from 'reflux';
 import NotificationActions from '../actions/NotificationActions';
 
-var DURATION = 3000;
+var DURATION = 5000;
 
 var NotificationStore = Reflux.createStore({
   listenables: NotificationActions,
