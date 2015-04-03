@@ -8,7 +8,12 @@ var Footer = React.createClass({
 	    <div className='container'>
           <span>Bookmarklet</span>
           <Bookmarklet />
-          <p>Use bookmarklet for easy way to add you reading. Just add it to your toolbar and click on it when you will be on reading page!</p>
+          <p>
+            If you're using a browser that supports it, you should be able to click
+            and drag the bookmarklet above to your bookmarks or favorites bar.
+
+            Next when you will be on the page that you want to read later just click on your bookmarklet.
+          </p>
         </div>
       </footer>
     );
