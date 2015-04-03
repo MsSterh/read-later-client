@@ -1,3 +1,4 @@
+jest.dontMock('q');
 jest.dontMock('../ArticlesStore');
 jest.dontMock('../FirebaseStore');
 jest.dontMock('../FilterStore');
@@ -6,6 +7,7 @@ jest.dontMock('../../actions/ArticlesActions');
 import { invokeSync } from '../../utils/test';
 
 import 'whatwg-fetch';    // stupid globals
+import Q from 'q';
 import { READABILITY_APP_URL } from '../../constants';
 import ArticlesStore from '../ArticlesStore';
 import FirebaseStore from '../FirebaseStore';
@@ -98,7 +100,7 @@ describe('ArticlesStore', () => {
   });
 
   describe('addArticle', () => {
-    var fetchMock = new Promise(() => {});
+    var fetchMock;
     var articleUrl = 'http://example.com/path';
     var requestParams = {
       method: 'post',
@@ -109,7 +111,8 @@ describe('ArticlesStore', () => {
     };
 
     beforeEach(() => {
-      spyOn(global, 'fetch').andReturn(fetchMock);
+      fetchMock = Q.defer();
+      spyOn(global, 'fetch').andReturn(fetchMock.promise);
       invokeSync(() => ArticlesActions.addArticle(articleUrl));
     });
 
@@ -118,12 +121,81 @@ describe('ArticlesStore', () => {
     });
 
     it('notifies about success when responded with 200', () => {
+      fetchMock.resolve({ status: 200 });
+      jest.runAllTicks();
+      expect(NotificationActions.create)
+        .toBeCalledWith('Item has been successfully added');
     });
 
     it('notifies about error when not responded with 200', () => {
+      fetchMock.resolve({ status: 400, statusText: 'Something was wrong' });
+      jest.runAllTicks();
+      expect(NotificationActions.create)
+        .toBeCalledWith('error', 'Something was wrong');
     });
   });
 
   describe('getArticles', () => {
+    var articles;
+
+    beforeEach(() => {
+      articles = {
+        article1: {
+          title: 'Lessons in the Fundamentals',
+          url: 'http://swannodette.github.io/2015/03/09/lessons-in-the-fundamentals/',
+          content: 'For the very first time ClojureScript ...',
+          read: true
+        },
+        article2: {
+          title: 'Scripting ClojureScript with JavaScript',
+          url: 'http://swannodette.github.io/2015/03/10/scripting-clojurescript-with-javascript/',
+          content: 'The following code demonstrates how to script the ClojureScript ...',
+          read: false
+        }
+      };
+
+      invokeSync(() => ArticlesActions.receiveArticles(articles));
+    });
+
+    it('returns articles collection', () => {
+      invokeSync(() => ArticlesActions.filterChange({
+        unreadOnly: false,
+        search: ''
+      }));
+
+      expect(ArticlesStore.getArticles()).toEqual(articles);
+    });
+
+    it('filters articles by title', () => {
+      invokeSync(() => ArticlesActions.filterChange({
+        unreadOnly: false,
+        search: 'Lessons'
+      }));
+
+      expect(ArticlesStore.getArticles()).toEqual({
+        article1: articles.article1
+      });
+    });
+
+    it('filters articles by url', () => {
+      invokeSync(() => ArticlesActions.filterChange({
+        unreadOnly: false,
+        search: 'scripting-clojurescript-with'
+      }));
+
+      expect(ArticlesStore.getArticles()).toEqual({
+        article2: articles.article2
+      });
+    });
+
+    it('filters articles by read state', () => {
+      invokeSync(() => ArticlesActions.filterChange({
+        unreadOnly: true
+      }));
+
+      expect(ArticlesStore.getArticles()).toEqual({
+        article2: articles.article2
+      });
+    });
   });
 });
