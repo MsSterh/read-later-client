@@ -14,7 +14,15 @@ describe('LinkToOriginal', () => {
     LinkToOriginal = TestUtils.renderIntoDocument(<LinkToOriginalComponent url={url} />);
   });
 
+  it('is <A> tag', () => {
+    expect(LinkToOriginal.getDOMNode().tagName).toEqual('A');
+  });
+
   it('displays host', () => {
     expect(LinkToOriginal.getDOMNode().textContent).toEqual('example.com');
+  });
+
+  it('has original url as href', () => {
+    expect(LinkToOriginal.getDOMNode().href).toEqual(url);
   });
 });
